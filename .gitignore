@@ -1,0 +1,10 @@
+.env
+!.example.env
+
+.vscode
+
+/vendor/
+
+*.db
+*.sqlite
+.http
