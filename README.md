@@ -1,36 +1,11 @@
-## 🏍️ **Thunder Gears**
+## **- 😘 KISS PHP -**
+Framework PHP que segue a metodologia KISS (Keep it stupid simple).
 
-![Imagem da tela de login do site](./preview.png)
+![PHP](https://img.shields.io/badge/PHP-8.4-8892BF?&logo=php&logoColor=white)
+![Brazil](https://img.shields.io/badge/Made%20in-Brazil-brightgreen?&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAYAAAB24g05AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAFGSURBVHjajNE9S0JxFMfx373XB3BJaGkQH5YUGiS6RA0REU0RQUs0CL2ANmmQ5sDVwVpaosU3kL2EXkFNQY9DSPRwk0Dug+Z1uAi36ILD73A45/M7/3PO0YvFojcUChX/+qGq6tNPIBCAEwqF4pmMzs7eC0ajEaDKRDwe/7ZpWRaTk5McHOxzfn7G09MjmUyGeDyOlEqlnmEYtLW1Y9s2n58ffH5+EY1GicViKPl8jmQyQSgU4v39DU3TsG0by7LQNA1VVZFyuRzxeJxoNIplWZimia7rmKaJruuYpomUzWaZnp5ienoK0zQxDAPDMDAMA13XKRQKSNlslqWlRdbXV6lUKliWRaVSwbIsSqUShUIBKZPJsLGxTrVaRdd1TNOkXC5TLpcxDINisYiUTqdZWVmhVqtRq9Wo1+s0Gg0ajQb1ep2XlxcA/h0A4sDrfZYHegIAAAAASUVORK5CYII=)
+![Status](https://img.shields.io/badge/Status-Em%20Development-yellow)
 
-> **Projeto Fullstack** que permite o gerenciamento do estoque de motos da loja **Thunder Gears**.
-
-![PHP](https://img.shields.io/badge/PHP-8.4-8892BF?style=for-the-badge&logo=php&logoColor=white)
-![Brazil](https://img.shields.io/badge/Made%20in-Brazil-brightgreen?style=for-the-badge&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAYAAAB24g05AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAFGSURBVHjajNE9S0JxFMfx373XB3BJaGkQH5YUGiS6RA0REU0RQUs0CL2ANmmQ5sDVwVpaosU3kL2EXkFNQY9DSPRwk0Dug+Z1uAi36ILD73A45/M7/3PO0YvFojcUChX/+qGq6tNPIBCAEwqF4pmMzs7eC0ajEaDKRDwe/7ZpWRaTk5McHOxzfn7G09MjmUyGeDyOlEqlnmEYtLW1Y9s2n58ffH5+EY1GicViKPl8jmQyQSgU4v39DU3TsG0by7LQNA1VVZFyuRzxeJxoNIplWZimia7rmKaJruuYpomUzWaZnp5ienoK0zQxDAPDMDAMA13XKRQKSNlslqWlRdbXV6lUKliWRaVSwbIsSqUShUIBKZPJsLGxTrVaRdd1TNOkXC5TLpcxDINisYiUTqdZWVmhVqtRq9Wo1+s0Gg0ajQb1ep2XlxcA/h0A4sDrfZYHegIAAAAASUVORK5CYII=)
-![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow?style=for-the-badge)
-
-## 📦 **Instalação**
-
-1. **Clone o repositório**
-```bash
-git clone https://github.com/brazuca/ThunderGears.git
-```
-
-2. **Instale as dependências**
-```bash
-composer install
-```
-
-## 🚀 **Como Iniciar o Servidor**
-
-1. Execute o comando abaixo para iniciar o servidor local:
-```bash
-composer start
-```
-
-2. Acesse o projeto no navegador em:  **[http://localhost:8000](http://localhost:8000)**
-
-
-## ✨ **Infraestrutura**
+## ✨ **Funcionalidades**
 
 ### **Rotas declarativas**
 > O sistema utiliza annotations para definir rotas de forma declarativa.
@@ -56,7 +31,7 @@ class ProductController extends WebController {
 }
 ```
 
-### **Objeto 'Request'**
+### **Objeto _Request_**
 Para manipular os dados da requisição, os controllers podem receber um parâmetro do tipo Request.
 
 ```php
@@ -152,6 +127,9 @@ Mesmo que tenha apenas um middleware em uma rota, use `return $next($request)` p
 ### **Dev Error Displayer - DED**
 O DED é um 'mostrador' de erros, que permite duas coisas. Primeiro, exibir mensagens de erros amigáveis para o desenvolvedor. Segundo, declarar erros que serão associados a uma página de erro.
 
+### **Suporte a DTOs**
+
+### **Validators**
 
 ## 📝 **Licença**
 

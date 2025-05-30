@@ -1,10 +1,6 @@
 .env
 !.example.env
-
 .vscode
 
-/vendor/
-
-*.db
-*.sqlite
+vendor/
 .http
