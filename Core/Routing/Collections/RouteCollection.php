@@ -1,10 +1,10 @@
 <?php
 
-namespace Infra\Routing\Collections;
+namespace KissPhp\Routing\Collections;
 
-use Infra\Routing\Route;
-use Infra\Routing\Engine\RouteCompiler;
-use Infra\Attributes\Injection\Dependency;
+use KissPhp\Routing\Route;
+use KissPhp\Routing\Engine\RouteCompiler;
+use KissPhp\Attributes\Injection\Dependency;
 
 class RouteCollection implements Interfaces\IRouteCollection {
   /** @var array<string, array<string, Route>> */

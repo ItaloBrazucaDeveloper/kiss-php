@@ -1,6 +1,6 @@
 <?php
 
-namespace Infra\Services;
+namespace KissPhp\Services;
 
 use Dotenv\Dotenv as DotEnviroment;
 

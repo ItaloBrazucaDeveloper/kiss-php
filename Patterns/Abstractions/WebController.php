@@ -1,9 +1,9 @@
 <?php
 
-namespace Infra\Abstractions;
+namespace KissPhp\Abstractions;
 
-use Infra\Attributes\Injection\Dependency;
-use Infra\Services\{ View, FlashMessage };
+use KissPhp\Attributes\Injection\Dependency;
+use KissPhp\Services\{ View, FlashMessage };
 
 abstract class WebController {
   #[Dependency(FlashMessage::class)]

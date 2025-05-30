@@ -1,6 +1,6 @@
 <?php
 
-namespace Infra\Http;
+namespace KissPhp\Http;
 
 class Session {
   public function set(string $key, mixed $value): void {

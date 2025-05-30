@@ -1,8 +1,8 @@
 <?php
 
-namespace Infra\DED;
+namespace KissPhp\DED;
 
-use Infra\Services\View;
+use KissPhp\Services\View;
 
 class RenderError {
   private static $alreadyRendered = false;

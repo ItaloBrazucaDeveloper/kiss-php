@@ -1,6 +1,6 @@
 <?php
 
-namespace Infra\DED;
+namespace KissPhp\DED;
 
 use Closure, Exception, ErrorException, Throwable;
 

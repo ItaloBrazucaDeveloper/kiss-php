@@ -1,6 +1,6 @@
 <?php
 
-namespace Infra\Routing\Collections;
+namespace KissPhp\Routing\Collections;
 
 class ControllerCollection implements Interfaces\IControllerCollection {
   /** @var array<string, string> */

@@ -1,10 +1,10 @@
 <?php
 
-namespace Infra\Routing\Collectors;
+namespace KissPhp\Routing\Collectors;
 
-use Infra\Attributes\Injection\Dependency;
+use KissPhp\Attributes\Injection\Dependency;
 
-use Infra\Routing\Collections\{
+use KissPhp\Routing\Collections\{
   ControllerCollection,
   Interfaces\IControllerCollection
 };

@@ -1,13 +1,13 @@
 <?php
 
-namespace Infra\Routing;
+namespace KissPhp\Routing;
 
-use Infra\Config\Paths;
-use Infra\Http\Request;
-use Infra\Exceptions\NotFound;
-use Infra\Attributes\Injection\Dependency;
+use KissPhp\Config\Paths;
+use KissPhp\Http\Request;
+use KissPhp\Exceptions\NotFound;
+use KissPhp\Attributes\Injection\Dependency;
 
-use Infra\Routing\{
+use KissPhp\Routing\{
   Collectors\RouteCollector,
   Collectors\Interfaces\IRouteCollector,
   Engine\ControllerInvoker,

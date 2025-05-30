@@ -1,6 +1,6 @@
 <?php
 
-namespace Infra\Exceptions;
+namespace KissPhp\Exceptions;
 
 use Exception, Throwable;
 

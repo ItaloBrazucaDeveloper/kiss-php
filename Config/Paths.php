@@ -1,6 +1,6 @@
 <?php
 
-namespace Infra\Config;
+namespace KissPhp\Config;
 
 final class Paths {
   public const ENV_PATH = __DIR__ . '/../../';

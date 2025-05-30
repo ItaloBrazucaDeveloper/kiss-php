@@ -1,6 +1,6 @@
 <?php
 
-namespace Infra\Services\Interfaces;
+namespace KissPhp\Services\Interfaces;
 
 interface IViewRender {
   public function render(string $view, array $data = []): string;

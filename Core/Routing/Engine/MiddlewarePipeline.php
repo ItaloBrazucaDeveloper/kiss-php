@@ -1,9 +1,9 @@
 <?php
 
-namespace Infra\Routing\Engine;
+namespace KissPhp\Routing\Engine;
 
 use Closure;
-use Infra\Http\Request;
+use KissPhp\Http\Request;
 
 class MiddlewarePipeline implements Interfaces\IMiddlewarePipeline {
   public function call($middlewares): Closure {

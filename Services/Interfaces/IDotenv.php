@@ -1,6 +1,6 @@
 <?php
 
-namespace Infra\Services\Interfaces;
+namespace KissPhp\Services\Interfaces;
 
 interface IDotenv {
   public static function get(string $key): ?string;

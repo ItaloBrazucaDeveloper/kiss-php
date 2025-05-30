@@ -1,9 +1,8 @@
 <?php
 
-namespace Infra\Http;
+namespace KissPhp\Http;
 
-use Infra\Annotations\Dependency;
-use Infra\Routing\Route;
+use KissPhp\Routing\Route;
 
 class Request {
   public private(set) Url $url;

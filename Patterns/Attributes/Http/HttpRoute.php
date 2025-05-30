@@ -1,8 +1,8 @@
 <?php
 
-namespace Infra\Attributes\Http;
+namespace KissPhp\Attributes\Http;
 
-use Infra\Config\View;
+use KissPhp\Config\View;
 
 #[\Attribute(\Attribute::TARGET_METHOD)]
 abstract class HttpRoute {

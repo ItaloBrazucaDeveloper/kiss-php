@@ -1,6 +1,6 @@
 <?php
 
-namespace Infra\Routing;
+namespace KissPhp\Routing;
 
 class Route {
   public function __construct(

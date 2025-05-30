@@ -1,6 +1,6 @@
 <?php
 
-namespace Infra\Routing\Engine\Interfaces;
+namespace KissPhp\Routing\Engine\Interfaces;
 
 use Closure;
 

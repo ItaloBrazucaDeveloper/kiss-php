@@ -1,6 +1,6 @@
 <?php
 
-namespace Infra\Config;
+namespace KissPhp\Config;
 
 final class View {
   public const PARAM_PATTERN = '/\/:(\w+):(?:{([^}]+)})?(\?|)/';

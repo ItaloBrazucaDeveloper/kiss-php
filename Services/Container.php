@@ -1,9 +1,9 @@
 <?php
 
-namespace Infra\Services;
+namespace KissPhp\Services;
 
 use ReflectionClass;
-use Infra\Attributes\Injection\Dependency;
+use KissPhp\Attributes\Injection\Dependency;
 
 /**
  * @template T

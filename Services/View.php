@@ -1,9 +1,9 @@
 <?php
 
-namespace Infra\Services;
+namespace KissPhp\Services;
 
 use Exception;
-use Infra\Config\{ Paths, View as ViewConfig };
+use KissPhp\Config\{ Paths, View as ViewConfig };
 
 class View implements Interfaces\IViewRender {
   private \Twig\Environment $twig;

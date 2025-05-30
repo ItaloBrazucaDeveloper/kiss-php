@@ -1,9 +1,9 @@
 <?php
 
-namespace Infra\Services;
+namespace KissPhp\Services;
 
-use Infra\Http\Session;
-use Infra\Attributes\Injection\Dependency;
+use KissPhp\Http\Session;
+use KissPhp\Attributes\Injection\Dependency;
 
 class FlashMessage {
   #[Dependency(Session::class)]

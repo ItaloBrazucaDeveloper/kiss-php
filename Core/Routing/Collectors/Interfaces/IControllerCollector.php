@@ -1,6 +1,6 @@
 <?php
 
-namespace Infra\Routing\Collectors\Interfaces;
+namespace KissPhp\Routing\Collectors\Interfaces;
 
 interface IControllerCollector {
   public function collect(string $path): array;

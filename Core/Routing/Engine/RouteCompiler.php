@@ -1,8 +1,8 @@
 <?php
 
-namespace Infra\Routing\Engine;
+namespace KissPhp\Routing\Engine;
 
-use Infra\Config\View;
+use KissPhp\Config\View;
 
 class RouteCompiler implements Interfaces\IRouteCompiler {
   public function compile(string $routePath): string {

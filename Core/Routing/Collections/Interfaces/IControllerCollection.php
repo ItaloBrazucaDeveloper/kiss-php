@@ -1,6 +1,6 @@
 <?php
 
-namespace Infra\Routing\Collections\interfaces;
+namespace KissPhp\Routing\Collections\interfaces;
 
 interface IControllerCollection {
   public function add(string $controller): void;

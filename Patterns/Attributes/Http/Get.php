@@ -1,13 +1,13 @@
 <?php
 
-namespace Infra\Attributes\Http;
+namespace KissPhp\Attributes\Http;
 
 #[\Attribute(\Attribute::TARGET_METHOD)]
-class Delete extends HttpRoute {
+class Get extends HttpRoute {
   public function __construct(
     ?string $path = '',
     ?array $middlewares = []
   ) {
-    parent::__construct('DELETE', $path, $middlewares);
+    parent::__construct('GET', $path, $middlewares);
   }
 }

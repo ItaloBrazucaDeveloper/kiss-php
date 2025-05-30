@@ -1,12 +1,12 @@
 <?php
 
-namespace Infra\Routing\Collectors;
+namespace KissPhp\Routing\Collectors;
 
 use ReflectionClass, ReflectionMethod, ReflectionAttribute;
 
-use Infra\Routing\Route;
-use Infra\Attributes\{ Http\HttpRoute, Http\Controller, Injection\Dependency };
-use Infra\Routing\Collections\{ RouteCollection, Interfaces\IRouteCollection };
+use KissPhp\Routing\Route;
+use KissPhp\Attributes\{ Http\HttpRoute, Http\Controller, Injection\Dependency };
+use KissPhp\Routing\Collections\{ RouteCollection, Interfaces\IRouteCollection };
 
 class RouteCollector implements Interfaces\IRouteCollector {
   #[Dependency(ControllerCollector::class)]

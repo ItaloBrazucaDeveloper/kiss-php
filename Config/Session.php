@@ -1,6 +1,6 @@
 <?php
 
-namespace Infra\Config;
+namespace KissPhp\Config;
 
 final class Session {
   public static function getSessionCookieParams(): array {

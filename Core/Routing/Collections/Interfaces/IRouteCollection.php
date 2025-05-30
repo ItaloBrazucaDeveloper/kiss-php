@@ -1,8 +1,8 @@
 <?php
 
-namespace Infra\Routing\Collections\interfaces;
+namespace KissPhp\Routing\Collections\interfaces;
 
-use Infra\Routing\Route;
+use KissPhp\Routing\Route;
 
 interface IRouteCollection {
   public function add(Route $route): void;

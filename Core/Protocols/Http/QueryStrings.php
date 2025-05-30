@@ -1,6 +1,6 @@
 <?php
 
-namespace Infra\Http;
+namespace KissPhp\Http;
 
 class QueryStrings {
   /** @var array<string, string> */

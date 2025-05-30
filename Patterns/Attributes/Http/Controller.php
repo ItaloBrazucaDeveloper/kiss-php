@@ -1,6 +1,6 @@
 <?php
 
-namespace Infra\Attributes\Http;
+namespace KissPhp\Attributes\Http;
 
 #[\Attribute(\Attribute::TARGET_CLASS)]
 class Controller {

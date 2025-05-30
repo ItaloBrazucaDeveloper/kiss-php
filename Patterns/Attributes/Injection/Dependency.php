@@ -1,6 +1,6 @@
 <?php
 
-namespace Infra\Attributes\Injection;
+namespace KissPhp\Attributes\Injection;
 
 #[\Attribute(\Attribute::TARGET_PROPERTY)]
 class Dependency {

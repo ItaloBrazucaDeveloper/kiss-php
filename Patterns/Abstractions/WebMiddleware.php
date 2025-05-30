@@ -1,9 +1,9 @@
 <?php
 
-namespace Infra\Abstractions;
+namespace KissPhp\Abstractions;
 
 use Closure;
-use Infra\Http\Request;
+use KissPhp\Http\Request;
 
 abstract class WebMiddleware {
   /**
