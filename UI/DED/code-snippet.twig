@@ -1,9 +1,0 @@
-<code class="panel-block">
-	{% for line in _error.snippet %}
-		<div class='{{ line.isError ? "error-line" : "code-line" }}'>
-			<span class='line-number'>{{ line.number }}</span>
-			<span class="split-line">|</span>
-			<span class='line-content'>{{ line.text }}</span>
-		</div>
-	{% endfor %}
-</code>

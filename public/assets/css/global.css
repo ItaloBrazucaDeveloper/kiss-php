@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  -webkit-font-smothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+:root {
+  /* Colors */
+  --color-background: #1a1a1a;
+  --color-surface: hsl(0, 0%, 16%);
+  --color-input: #333333;
+  --color-border: #404040;
+  --color-text: #ffffff;
+  --color-primary: #0066cc;
+  --color-primary-hover: #0052a3;
+  --color-primary-active: #004080;
+  --color-error-message: #f87171;
+
+  /* Shadows */
+  --shadow-card: 0 0 20px rgba(0, 0, 0, 0.3);
+  --shadow-input: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-input-focus: 0 2px 8px rgba(0, 102, 204, 0.2);
+
+  /* Borders */
+  --border-light: 1px solid rgba(255, 255, 255, 0.1);
+  --border-radius: 4px;
+}

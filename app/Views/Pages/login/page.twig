@@ -1,0 +1,36 @@
+{% extends 'root.layout.twig' %}
+{% import 'Components/form.twig' as form %}
+
+{% block links %}
+	{{ style('./styles.css') }}
+{% endblock %}
+
+{% block content %}
+	<div class='login-container'>
+		<form class='login-form' method='post'>
+			<h1>Login</h1>
+
+			{{ form.input(
+				type: 'email',
+				id: 'email',
+				label: 'E-mail',
+				required: true,
+				value: user.email
+			) }}
+
+			{{ form.input(
+				type: 'password',
+				id: 'password',
+				label: 'Senha',
+				required: true,
+				value: user.password
+			) }}
+			
+			{% if flashMessage %}
+				<span class='form-error'>{{ flashMessage.message }}</span>
+			{% endif %}
+			
+			<button type='submit'>Entrar</button>
+		</form>
+	</div>
+{% endblock %}

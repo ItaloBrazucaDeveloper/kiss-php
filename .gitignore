@@ -1,6 +1,7 @@
 .env
 !.example.env
 .vscode
+.http
 
 vendor/
-.http
+!vendor/kiss-php/

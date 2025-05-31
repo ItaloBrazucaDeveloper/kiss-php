@@ -1,0 +1,17 @@
+.stack-trace-title {
+  padding-block: var(--spacing-sm);
+}
+
+.file {
+  color: var(--dark-gray);
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.class,
+.function {
+  color: var(--code-blue);
+  font-weight: 600;
+  font-size: 15px;
+}

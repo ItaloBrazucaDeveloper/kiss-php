@@ -1,28 +1,21 @@
 {
-  "name": "italobrazucadeveloper/kiss-php",
+  "name": "italobrazucadeveloper/test-project",
   "type": "project",
-  "license": "MIT",
-  "scripts": {
-    "start": "php -S localhost:8080 -t ./public"
+  "require": {
+    "kiss-php/framework": "*"
   },
+  "minimum-stability": "dev",
   "autoload": {
-    "psr-4": {
-      "KissPhp\\": [
-        ".",
-        "Patterns/",
-        "Core/Protocols/"
-      ]
-    }
+    "psr-4": { "App\\": "app/" }
   },
   "authors": [
     { "name": "ItaloBrazucaDeveloper" }
   ],
-  "require": {
-    "vlucas/phpdotenv": "^5.6.2",
-    "twig/twig": "^3.21.1"
-  },
-  "require-dev": {
-    "pestphp/pest": "^3.8.2"
+  "repositories": {
+    "kiss-php": {
+      "type": "path",
+      "url": "vendor/kiss-php"
+    }
   },
   "config": {
     "allow-plugins": {

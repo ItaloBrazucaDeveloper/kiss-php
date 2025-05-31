@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block metas %} {% endblock %}
+    <link rel="stylesheet" href="/assets/css/global.css">
+    {% block links %} {% endblock %}
+    <title>Thunder Gears</title>
+  </head>
+  <body>
+    {% block content %} {% endblock %}
+    {% block scripts %} {% endblock %}
+
+    {% if true %}
+      {% include "@Infra/DED/debug-container.twig" %}
+    {% endif %}
+  </body>
+</html>
