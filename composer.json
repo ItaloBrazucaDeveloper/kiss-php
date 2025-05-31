@@ -1,6 +1,6 @@
 {
-  "name": "italobrazucadeveloper/kiss-php",
-  "type": "project",
+  "name": "kiss-php/framework",
+  "type": "library",
   "license": "MIT",
   "scripts": {
     "start": "php -S localhost:8080 -t ./public"
@@ -8,7 +8,7 @@
   "autoload": {
     "psr-4": {
       "KissPhp\\": [
-        ".",
+        "src/",
         "Patterns/",
         "Core/Protocols/"
       ]
