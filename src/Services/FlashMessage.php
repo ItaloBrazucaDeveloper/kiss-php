@@ -2,7 +2,7 @@
 
 namespace KissPhp\Services;
 
-use KissPhp\Http\Session;
+use KissPhp\Core\Http\Session;
 use KissPhp\Attributes\Injection\Dependency;
 
 class FlashMessage {

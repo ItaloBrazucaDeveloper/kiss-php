@@ -3,7 +3,7 @@
 namespace KissPhp\Abstractions;
 
 use Closure;
-use KissPhp\Http\Request;
+use KissPhp\Core\Http\Request;
 
 abstract class WebMiddleware {
   /**

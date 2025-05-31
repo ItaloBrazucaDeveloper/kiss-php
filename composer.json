@@ -7,11 +7,8 @@
   },
   "autoload": {
     "psr-4": {
-      "KissPhp\\": [
-        "src/",
-        "Patterns/",
-        "Core/Protocols/"
-      ]
+      "KissPhp\\": "src/",
+      "KissPhp\\Protocols": "src/Core/Protocols/"
     }
   },
   "authors": [
