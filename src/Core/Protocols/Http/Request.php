@@ -1,6 +1,6 @@
 <?php
 
-namespace KissPhp\Core\Http;
+namespace KissPhp\Core\Protocols\Http;
 
 use KissPhp\Core\Routing\Route;
 

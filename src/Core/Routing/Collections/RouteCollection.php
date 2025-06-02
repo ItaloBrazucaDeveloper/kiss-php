@@ -45,5 +45,7 @@ class RouteCollection implements Interfaces\IRouteCollection {
     return null;
   }
 
-  public function isEmpty(): bool { return empty($this->routes) === 0; }
+  public function isEmpty(): bool {
+    return count($this->routes) === 0;
+  }
 }
