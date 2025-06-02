@@ -2,8 +2,8 @@
 	<link rel="stylesheet" href="/assets/css/ded.css">
 {% endblock %}
 
-<dialog open class="debug-container">
-	<button class="close-debug">
+<dialog open id="debug-ded-kiss" class="debug-container">
+	<button onclick="debug-ded-kiss.close()" class="close-debug">
 		<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 			<line x1="18" y1="6" x2="6" y2="18"></line>
 			<line x1="6" y1="6" x2="18" y2="18"></line>
@@ -14,8 +14,7 @@
 		<header class="error-header">
 			<h2 class="error-title">{{ _error.title }}</h2>
 			<span class="error-message">
-				<strong>Message:</strong>
-				{{ _error.message }}
+				<strong>Message:</strong> {{ _error.message }}
 			</span>
 		</header>
 
@@ -25,7 +24,6 @@
 		</div>
 	</section>
 </dialog>
-
 
 {% block scripts %}
 	<script src="/assets/js/copyToClipboard.js"></script>

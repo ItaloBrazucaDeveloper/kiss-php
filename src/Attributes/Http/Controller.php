@@ -5,7 +5,9 @@ namespace KissPhp\Attributes\Http;
 #[\Attribute(\Attribute::TARGET_CLASS)]
 class Controller {
   public function __construct(
-    public string $prefix = '',
-    public array $middlewares = [],
-  ) { }
+    public private(set) string $prefix = '',
+    public readonly array $middlewares = [],
+  ) {
+    if ($this->prefix === 'index') $this->prefix = '';
+  }
 }

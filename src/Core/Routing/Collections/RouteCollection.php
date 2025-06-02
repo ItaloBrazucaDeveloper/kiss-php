@@ -28,11 +28,10 @@ class RouteCollection implements Interfaces\IRouteCollection {
   }
 
   public function get(string $method, string $endpoint): ?Route {
-    if (!isset($this->routes[$method])) return null;
-
     if (isset($this->routes[$method][$endpoint])) {
       return $this->routes[$method][$endpoint];
     }
+    if (!isset($this->compiledRoutes[$method])) return null;
 
     foreach ($this->compiledRoutes[$method] as $routePattern => $route) {
       if (!preg_match($routePattern, $endpoint, $matches)) continue;
