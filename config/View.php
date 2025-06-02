@@ -3,7 +3,7 @@
 namespace KissPhp\Config;
 
 final class View {
-  public const PARAM_PATTERN = '/\/:(\w+):(?:{([^}]+)})?(\?|)/';
+  public const PARAM_PATTERN = '#\/:(\w+):(?:{([^}]+)})?(\?|)#';
 
   public const ACCEPT_EXTENSIONS_FILES = [
     '.html.twig',
