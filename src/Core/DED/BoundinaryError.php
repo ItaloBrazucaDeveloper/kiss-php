@@ -3,7 +3,6 @@
 namespace KissPhp\Core\DED;
 
 use Closure, Exception, ErrorException, Throwable;
-use Error;
 
 class BoundinaryError {
   public static function register(): void {
@@ -15,7 +14,7 @@ class BoundinaryError {
 
   public static function handleException(Throwable $exception): void {
     ErrorCollection::add(new FriendlyError($exception));
-    if (!RenderError::$isRendering) return;
+    if (RenderError::$isRendering) return;
 
     RenderError::render($exception::class, [
       '_error' => ErrorCollection::getErrors()
@@ -33,7 +32,7 @@ class BoundinaryError {
   }
 
   public static function handleFatalError(): void {
-    $error = error_get_last();
+    if (!($error = error_get_last())) return;
     $isFatalError = in_array($error['type'], [E_ERROR, E_CORE_ERROR, E_COMPILE_ERROR]);
 
     if ($error !== null && $isFatalError) {

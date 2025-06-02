@@ -1,9 +1,9 @@
-<code class="panel-block">
+<pre class="mb-0 bg-light p-3 rounded">
 	{% for line in _error.snippet %}
-		<div class='{{ line.isError ? "error-line" : "code-line" }}'>
-			<span class='line-number'>{{ line.number }}</span>
-			<span class="split-line">|</span>
-			<span class='line-content'>{{ line.text }}</span>
+		<div class='d-flex {{ line.isError ? "bg-danger text-white" : "" }}'>
+			<span class='text-muted me-2'>{{ line.number }}</span>
+			<span class="mx-2">|</span>
+			<span class='flex-fill'>{{ line.text }}</span>
 		</div>
 	{% endfor %}
-</code>
+</pre>
