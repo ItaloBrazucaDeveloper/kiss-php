@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use KissPhp\Core\Http\Request;
+use KissPhp\Protocols\Http\Request;
 use KissPhp\Abstractions\WebController;
 use KissPhp\Attributes\Http\{ Controller, Get };
 
