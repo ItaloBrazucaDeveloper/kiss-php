@@ -3,7 +3,7 @@
 namespace App\Middlewares;
 
 use Closure;
-use KissPhp\Http\Request;
+use KissPhp\Core\Http\Request;
 use KissPhp\Abstractions\WebMiddleware;
 
 class Auth extends WebMiddleware {

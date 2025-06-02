@@ -4,8 +4,8 @@ require '../vendor/autoload.php';
 
 use KissPhp\Config\Paths;
 use KissPhp\Config\Session;
-use KissPhp\DED\BoundinaryError;
-use KissPhp\Routing\DispatchRouter;
+use KissPhp\Core\DED\BoundinaryError;
+use KissPhp\Core\Routing\DispatchRouter;
 use KissPhp\Services\Container;
 use KissPhp\Services\Dotenv as ServicesDotenv;
 

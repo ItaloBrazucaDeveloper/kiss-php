@@ -1,8 +1,11 @@
 {
   "name": "italobrazucadeveloper/test-project",
   "type": "project",
+  "scripts": {
+    "dev": "php -S localhost:5173 -t ./public"
+  },
   "require": {
-    "kiss-php/framework": "*"
+    "kiss-php/framework": "dev-main"
   },
   "minimum-stability": "dev",
   "autoload": {
@@ -13,8 +16,8 @@
   ],
   "repositories": {
     "kiss-php": {
-      "type": "path",
-      "url": "vendor/kiss-php"
+      "type": "vcs",
+      "url": "https://github.com/ItaloBrazucaDeveloper/kiss-php"
     }
   },
   "config": {

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Features\Auth;
+namespace App\Controllers;
 
-use KissPhp\Http\Request;
+use KissPhp\Core\Http\Request;
 use KissPhp\Abstractions\WebController;
 use KissPhp\Attributes\Http\{ Controller, Get };
 
