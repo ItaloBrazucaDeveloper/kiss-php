@@ -10,6 +10,6 @@ use KissPhp\Attributes\Http\{ Controller, Get };
 class AuthController extends WebController {
   #[Get('/login')]
   public function showLoginPage(Request $request) {
-    return 'Login Page';
+    $this->render('Pages/login/page');
   }
 }

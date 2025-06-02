@@ -1,15 +1,11 @@
 {% extends 'root.layout.twig' %}
-{% import 'Components/form.twig' as form %}
-
-{% block links %}
-	{{ style('./styles.css') }}
-{% endblock %}
+{% import 'Components/input.twig' as form %}
 
 {% block content %}
-	<div class='login-container'>
-		<form class='login-form' method='post'>
+	<div class="d-flex justify-content-center align-items-center">
+		<form method='POST'>
 			<h1>Login</h1>
-
+			
 			{{ form.input(
 				type: 'email',
 				id: 'email',
@@ -17,7 +13,6 @@
 				required: true,
 				value: user.email
 			) }}
-
 			{{ form.input(
 				type: 'password',
 				id: 'password',
@@ -25,12 +20,12 @@
 				required: true,
 				value: user.password
 			) }}
-			
+		
 			{% if flashMessage %}
-				<span class='form-error'>{{ flashMessage.message }}</span>
+				<span>{{ flashMessage.message }}</span>
 			{% endif %}
-			
-			<button type='submit'>Entrar</button>
+		
+			<button class="btn btn-primary w-100" type='submit'>Entrar</button>
 		</form>
 	</div>
 {% endblock %}
