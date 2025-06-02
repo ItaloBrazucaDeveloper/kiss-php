@@ -5,17 +5,19 @@ namespace KissPhp\Core\DED;
 use KissPhp\Services\View;
 
 class RenderError {
-  private static $alreadyRendered = false;
+  public static bool $isRendering = false;
 
   public static function render(string $errorClass, ?array $data = []): void {
-    if (self::$alreadyRendered) return;
-
     $twig = View::getInstance();
     $viewName = self::getViewNameFromClassName($errorClass);
 
+    // Mescla os dados passados com os erros acumulados
+    $viewData = array_merge($data ?? [], [
+      '_errors' => ErrorCollection::getErrors()
+    ]);
+
     $view = $twig->has("@error-page/{$viewName}") ? $viewName : 'default';
-    echo $twig->render("@error-page/{$view}", $data);
-    self::$alreadyRendered = true;
+    echo $twig->render("@error-page/{$view}", $viewData);
   }
 
   private static function getViewNameFromClassName(
