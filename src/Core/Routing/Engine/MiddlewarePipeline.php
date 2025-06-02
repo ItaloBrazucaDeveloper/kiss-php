@@ -3,7 +3,7 @@
 namespace KissPhp\Core\Routing\Engine;
 
 use Closure;
-use KissPhp\Core\Http\Request;
+use KissPhp\Protocols\Http\Request;
 
 class MiddlewarePipeline implements Interfaces\IMiddlewarePipeline {
   public function call($middlewares): Closure {

@@ -4,9 +4,9 @@ namespace KissPhp\Core\Routing\Engine;
 
 use ReflectionMethod;
 
-use KissPhp\Core\Http\Request;
 use KissPhp\Core\Routing\Route;
 use KissPhp\Services\Container;
+use KissPhp\Protocols\Http\Request;
 
 class ControllerInvoker implements Interfaces\IControllerInvoker {
   public function invoke(Route $route, Request $request): void {

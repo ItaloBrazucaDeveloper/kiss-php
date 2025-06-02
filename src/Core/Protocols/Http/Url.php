@@ -1,6 +1,6 @@
 <?php
 
-namespace KissPhp\Core\Protocols\Http;
+namespace KissPhp\Protocols\Http;
 
 class Url {
   public private(set) QueryStrings $queryStrings;

@@ -1,6 +1,6 @@
 <?php
 
-namespace KissPhp\Core\Protocols\Http;
+namespace KissPhp\Protocols\Http;
 
 class Body {
   public private(set) ?string $contentType;

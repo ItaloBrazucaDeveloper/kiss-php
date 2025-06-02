@@ -1,6 +1,6 @@
 <?php
 
-namespace KissPhp\Core\Protocols\Http;
+namespace KissPhp\Protocols\Http;
 
 class Session {
   public function set(string $key, mixed $value): void {

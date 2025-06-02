@@ -3,8 +3,8 @@
 namespace KissPhp\Core\Routing;
 
 use KissPhp\Config\Paths;
-use KissPhp\Core\Http\Request;
 use KissPhp\Exceptions\NotFound;
+use KissPhp\Protocols\Http\Request;
 use KissPhp\Attributes\Injection\Dependency;
 
 use KissPhp\Core\Routing\{

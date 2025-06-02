@@ -8,6 +8,7 @@
   "autoload": {
     "psr-4": {
       "KissPhp\\": "src/",
+      "KissPhp\\Config\\": "config/",
       "KissPhp\\Protocols\\": "src/Core/Protocols/"
     }
   },
