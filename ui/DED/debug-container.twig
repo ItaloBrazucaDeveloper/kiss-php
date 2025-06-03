@@ -1,40 +1,56 @@
 {% if _errors is defined %}
-	<dialog id='debug_ded_kiss' class='modal d-block' tabindex="-1">
-		<div class="modal-dialog modal-lg modal-dialog-centered">
+	<button
+			type="button"
+			class="fw-medium fs-5 btn btn-danger py-1 px-3 rounded-2 position-absolute bottom-0 m-3 shadow-md"
+			data-bs-toggle="modal"
+			data-bs-target="#debug_ded_kiss"
+			aria-label="Open debugger"
+			title="Open debugger"
+		>
+			<span class="text-white">!</span>
+	</button>
 
-			<div class="modal-content">
-				<header class="modal-header">
-					<h2 class="modal-title">Debug</h2>
-					<button type="button" class="btn-close" onclick='debug_ded_kiss.close()'></button>
-				</header>
-				
+	<div
+		class="modal"
+		id="debug_ded_kiss"
+		tabindex="-1"
+		aria-hidden="true"
+	>
+		<div class="modal-dialog modal-xl modal-dialog-centered border-0 rounded-4 shadow-md">
+			<div class="modal-content bg-dark text-light border-0 p-2 border-4 border-top border-danger">
+				<div class="modal-header border-0 pb-0">
+					<button
+						type="button"
+						class="btn-close btn-close-white border-0"
+						data-bs-dismiss="modal"
+						aria-label="Close"
+						title="Close debugger"
+					></button>
+				</div>
 				<div class="modal-body">
 					{% for _error in _errors %}
-						<section class='mb-4'>
-							<header>
-								<h2 class='h5'>{{ _error.title }}</h2>
-								<span class='text-danger'>
-									<strong>Message:</strong> {{ _error.message }}
+						<section>
+							<header class="mb-4">
+								<span class='fw-medium bg-danger bg-opacity-25 text-danger p-2 rounded-3 mb-5'>
+									{{ _error.title }}
+								</span>
+								<span class='d-block bg-danger bg-opacity-10 px-3 py-2 mt-4 border-start border-danger border-3'>
+									Message:
+									{{ _error.message }}
 								</span>
 							</header>
-								<div>
-									{% include '@Infra/DED/source-code.twig' %}
-									{% include '@Infra/DED/stack-trace.twig' %}
-								</div>
+							<div>
+								{% include '@Infra/DED/source-code.twig' %}
+								{% include '@Infra/DED/stack-trace.twig' %}
+							</div>
 						</section>
 					{% endfor %}
 				</div>
 			</div>
-
 		</div>
-	</dialog>
+	</div>
 
 	{% block scripts %}
 		<script src='/assets/js/copyToClipboard.js'></script>
-		<script>
-			window.addEventListener('DOMContentLoaded', function() {
-				document.getElementById('debug_ded_kiss').showModal();
-			});
-		</script>
 	{% endblock %}
 {% endif %}

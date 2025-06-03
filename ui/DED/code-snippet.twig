@@ -1,9 +1,18 @@
-<pre class="mb-0 bg-light p-3 rounded">
+<pre
+	class="text-light font-lighter p-0 m-0 font-monospace overflow-hidden"
+	style="line-height: 0.5;"
+>
 	{% for line in _error.snippet %}
-		<div class='d-flex {{ line.isError ? "bg-danger text-white" : "" }}'>
-			<span class='text-muted me-2'>{{ line.number }}</span>
-			<span class="mx-2">|</span>
-			<span class='flex-fill'>{{ line.text }}</span>
+		<div
+			class='d-flex px-5 p-1 fs-6 m-0 {{ 
+				line.isError 
+				? "bg-danger bg-opacity-25 text-white"
+				: "text-light text-opacity-50" 
+			}}'
+		>
+			<span class='m-0 me-3'>{{ line.number }}</span>
+			<span class="m-0 mx-2">|</span>
+			<span class='{{ idOfElementToCopy }} flex-fill'>{{ line.text }}</span>
 		</div>
 	{% endfor %}
 </pre>

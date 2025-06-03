@@ -1,25 +1,26 @@
-<div class="card mb-3">
-	<div class="card-header d-flex justify-content-between align-items-center">
-		<h4 class="card-title mb-0">Stack Trace</h4>
-		<button class="btn btn-outline-secondary btn-sm" onclick="copyToClipboard()" title="Copy to clipboard">
-			<svg width="16" height="16" viewbox="0 0 16 16">
-				<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"/>
-				<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"/>
-			</svg>
-		</button>
-	</div>
+<div class="card mb-3 bg-black border-1 border-secondary border-opacity-50 overflow-hidden">
+	<header class="card-header border-bottom border-secondary d-flex justify-content-between align-items-center">
+		<h5 class="text-light text-opacity-75 card-title mb-0">
+			Stack Trace
+		</h5>
+
+		{% set idOfElementToCopy = 'stack_trace_line' %}
+		{% include "@infra/DED/copy-to-clipboard.twig" with { idOfElementToCopy } %}
+	</header>
 
 	<ol class="list-group list-group-flush">
 		{% for trace in _error.trace %}
-			<li class="list-group-item d-flex flex-column flex-md-row align-items-md-center">
+			<li class="bg-black border-secondary text-light text-opacity-75 list-group-item d-flex align-items-md-center">
 				<span class="badge bg-secondary me-2">{{ loop.index }}</span>
+				
 				{% if trace.where.file is defined %}
-					<span class="text-monospace me-2">{{ trace.where.file }}:{{ trace.where.line }}</span>
+					<span class="{{ idOfElementToCopy }} text-monospace me-2">{{ trace.where.file }}:{{ trace.where.line }}</span>
 				{% endif %}
+				
 				{% if trace.class is defined %}
-					<span class="fw-bold">{{ trace.class }}{{ trace.type }}{{ trace.function }}</span>
+					<span class="{{ idOfElementToCopy }}">{{ trace.class }}{{ trace.type }}{{ trace.function }}</span>
 				{% else %}
-					<span class="fw-bold">{{ trace.function }}</span>
+					<span class="{{ idOfElementToCopy }}">{{ trace.function }}</span>
 				{% endif %}
 			</li>
 		{% endfor %}
