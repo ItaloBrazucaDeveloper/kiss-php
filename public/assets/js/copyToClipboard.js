@@ -1,14 +1,12 @@
-function copyToClipboard(e) {
-  // Get the text field
-  let copyText = e.target;
+function copyToClipboard(idOfElementToCopy) {
+  let copyTexts = document.querySelectorAll(`.${idOfElementToCopy}`);
+  let text = '';
 
-  // Select the text field
-  copyText.select();
-  copyText.setSelectionRange(0, 99999); // For mobile devices
-
+  copyTexts.forEach(element => {
+    if (!element) return;
+    text += '\n' + element.textContent;
+  });
+  
   // Copy the text inside the text field
-  navigator.clipboard.writeText(copyText.value);
-
-  // Alert the copied text
-  alert("Copied the text: " + copyText.value);
+  navigator.clipboard.writeText(text);
 }
