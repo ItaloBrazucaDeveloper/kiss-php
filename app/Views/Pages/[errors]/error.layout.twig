@@ -1,0 +1,11 @@
+{% extends "root.layout.twig" %}
+
+{% block content %}
+  <main class="d-flex justify-content-center align-items-center vh-100">
+    <h1>
+      {% block errorCode %} {% endblock %}
+      <span>|</span>
+      {% block errorTitle %} {% endblock %}
+    </h1>
+  </main>
+{% endblock %}

@@ -1,5 +1,11 @@
-{% extends "root.layout.twig" %}
+{% extends "@error-page/error.layout.twig" %}
 
-{% block content %}
-  <h1>404 | Not Found</h1>
+{% block title %} 404 - {{ parent() }} {% endblock %}
+
+{% block errorCode %}
+  404
+{% endblock %}
+
+{% block errorTitle %}
+  Not Found
 {% endblock %}

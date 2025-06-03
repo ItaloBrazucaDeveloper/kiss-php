@@ -1,5 +1,4 @@
-{% extends "root.layout.twig" %}
+{% extends "@error-page/error.layout.twig" %}
 
-{% block content %}
-  <h1>Unexpected Error</h1>
-{% endblock %}
+{% block errorCode %} 0 {% endblock %}
+{% block errorTitle %} Unexpected Error {% endblock %}
