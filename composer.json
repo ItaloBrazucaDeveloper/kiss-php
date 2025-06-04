@@ -2,9 +2,6 @@
   "name": "kiss-php/framework",
   "type": "library",
   "license": "MIT",
-  "scripts": {
-    "start": "php -S localhost:8080 -t ./public"
-  },
   "autoload": {
     "psr-4": {
       "KissPhp\\": "src/",
