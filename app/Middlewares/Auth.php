@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Middlewares;
 
 use Closure;

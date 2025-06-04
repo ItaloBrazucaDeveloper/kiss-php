@@ -19,6 +19,12 @@
 				required: true,
 				value: user.password
 			) }}
+			
+			{{ form.input(
+				id: 'zipcode',
+				label: 'Zip Code',
+				required: true,
+			) }}
 		
 			{% if flashMessage %}
 				<span>{{ flashMessage.message }}</span>
