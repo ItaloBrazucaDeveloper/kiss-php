@@ -28,6 +28,8 @@ class Body {
     return $this->body[$key] ?? null;
   }
 
+  public function getAll() { return $this->body; }
+
   public function has(string $key): bool {
     return isset($this->body[$key]);
   }

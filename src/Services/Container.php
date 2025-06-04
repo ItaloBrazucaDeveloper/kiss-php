@@ -22,7 +22,7 @@ class Container implements Interfaces\IContainer {
    */
   private function resolve(string $className): mixed {
     $reflector = new ReflectionClass($className);
-    $hasConstructor = !!$reflector->getConstructor();
+    $hasConstructor = $reflector->hasMethod('__construct');
     
     $instance = $hasConstructor ?
       $reflector->newInstance() :
@@ -34,9 +34,9 @@ class Container implements Interfaces\IContainer {
       $dependecy = $property->getAttributes(Dependency::class);
       
       if (count($dependecy) === 0) continue;
-      $dependecyAnnotation = $dependecy[0]->newInstance();
+      $dependecyAttribute = $dependecy[0]->newInstance();
 
-      $dependecyName = $dependecyAnnotation->instanceOf ?? $property->getType()->getName();
+      $dependecyName = $dependecyAttribute->instanceOf ?? $property->getType()->getName();
       $property->setValue($instance, $this->get($dependecyName));
     }
     return $instance;
