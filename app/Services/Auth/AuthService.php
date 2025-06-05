@@ -1,7 +1,7 @@
 <?php
 namespace App\Services\Auth;
 
-use App\DTOs\LoginUser;
+use App\DTOs\User\LoginUser;
 
 class AuthService implements IAuthService {
   public function __construct(

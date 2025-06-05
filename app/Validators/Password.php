@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Validators;
 
 use KissPhp\Contracts\IValidator;
@@ -9,7 +8,7 @@ class Password implements IValidator {
     private string $password
   ) { }
 
-  public function check(): bool {
+  public function check(): true|string {
     return false;
   }
 }

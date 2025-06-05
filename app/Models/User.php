@@ -4,12 +4,12 @@ namespace App\Models;
 
 class Client {
 	public function __construct(
-		public readonly ?string $cpf,
-		public readonly ?string $name,
-		public readonly ?string $email,
-		public readonly ?string $phone,
-		public readonly ?string $status,
-		public readonly ?Address $address,
-		public readonly ?string $bithdate
+		public ?string $cpf,
+		public ?string $name,
+		public ?string $email,
+		public ?string $phone,
+		public ?string $status,
+		public ?Address $address,
+		public ?string $bithdate
 	) { }
 }
