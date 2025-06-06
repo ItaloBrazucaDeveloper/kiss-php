@@ -10,25 +10,25 @@
 				id: 'email',
 				label: 'E-mail',
 				required: true,
-				value: user.email
+				value: user.email,
+				error: getInputError('email')
 			) }}
+
 			{{ form.input(
 				type: 'password',
 				id: 'password',
 				label: 'Senha',
 				required: true,
-				value: user.password
+				value: user.password,
+				error: getInputError('password')
 			) }}
 			
 			{{ form.input(
 				id: 'zipcode',
 				label: 'Zip Code',
 				required: true,
+				error: getInputError('zipcode')
 			) }}
-		
-			{% if flashMessage %}
-				<span>{{ flashMessage.message }}</span>
-			{% endif %}
 		
 			<button class="btn btn-primary w-100 mt-3" type='submit'>Entrar</button>
 		</form>

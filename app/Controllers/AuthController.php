@@ -4,9 +4,9 @@ namespace App\Controllers;
 use App\DTOs\User\LoginUser;
 use App\Services\Auth\{ AuthService, IAuthService };
 
-use KissPhp\Attributes\Http\{Get, Post, Controller};
-use KissPhp\Attributes\{ Di\Inject, Data\DTO };
 use KissPhp\Abstractions\WebController;
+use KissPhp\Attributes\{ Di\Inject, Data\DTO };
+use KissPhp\Attributes\Http\{ Get, Post, Controller };
 
 #[Controller('index')]
 class AuthController extends WebController {
