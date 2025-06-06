@@ -1,5 +1,4 @@
 <?php
-
 namespace KissPhp\Core\Routing\Engine;
 
 use KissPhp\Config\View;

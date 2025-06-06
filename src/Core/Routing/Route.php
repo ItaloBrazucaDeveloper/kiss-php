@@ -1,5 +1,4 @@
 <?php
-
 namespace KissPhp\Core\Routing;
 
 class Route {

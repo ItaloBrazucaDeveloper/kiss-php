@@ -1,9 +1,8 @@
 <?php
-
 namespace KissPhp\Services;
 
-use KissPhp\Config\{ Paths, View as ViewConfig };
 use KissPhp\Exceptions\NotFound;
+use KissPhp\Config\{ Paths, View as ViewConfig };
 
 class View implements Interfaces\IViewRender {
   private \Twig\Environment $twig;
@@ -21,12 +20,25 @@ class View implements Interfaces\IViewRender {
     foreach (ViewConfig::ALIAS_PATHS as $path => $alias) {
       $loader->addPath($path, $alias);
     }
+    
     $this->twig = new \Twig\Environment($loader, ViewConfig::ENVORIMENT);
+
+    $this->twig->addFunction(new \Twig\TwigFunction(
+      'getInputError',
+      function($inputName) {
+        $errors = $_SESSION['InputErrors'][$inputName] ?? '';
+        unset($_SESSION['InputErrors'][$inputName]);
+        return $errors;
+      }
+    ));
   }
 
   public function render(string $viewName, array $params = []): string {
     $resolvedName = $this->resolveViewName($viewName);
-    if ($resolvedName === '') throw new NotFound('Note found the view: {$resolvedName}');
+
+    if ($resolvedName === '') throw new NotFound(
+      "Cannot found the view: {$resolvedName}"
+    );
     return $this->twig->render($resolvedName, $params);
   }
 

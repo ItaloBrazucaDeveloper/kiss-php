@@ -1,29 +1,37 @@
 <?php
-
 namespace KissPhp\Core\Routing\Collectors;
 
-use ReflectionClass, ReflectionMethod, ReflectionAttribute;
+use KissPhp\Attributes\{
+  Di\Inject,
+  Http\HttpRoute,
+  Http\Controller,
+};
+
+use KissPhp\Core\Routing\Collections\{
+  RouteCollection,
+  interfaces\IRouteCollection
+};
 
 use KissPhp\Core\Routing\Route;
-use KissPhp\Attributes\{ Http\HttpRoute, Http\Controller, Injection\Dependency };
-use KissPhp\Core\Routing\Collections\{ RouteCollection, Interfaces\IRouteCollection };
 
 class RouteCollector implements Interfaces\IRouteCollector {
-  #[Dependency(ControllerCollector::class)]
-  private Interfaces\IControllerCollector $ControllerCollector;
-
-  #[Dependency(RouteCollection::class)]
-  private IRouteCollection $routes;
+  public function __construct(
+    #[Inject(ControllerCollector::class)]
+      private Interfaces\IControllerCollector $ControllerCollector,
+  
+    #[Inject(RouteCollection::class)]
+      private IRouteCollection $routes
+  ) { }
 
   public function collect(string $path): IRouteCollection {
     $controllers = $this->ControllerCollector->collect($path);
 
     foreach ($controllers as $controller) {
-      $reflectionClass = new ReflectionClass($controller);
+      $reflectionClass = new \ReflectionClass($controller);
       $controllerMethods = $reflectionClass->getMethods();
 
       array_walk($controllerMethods,
-        function(ReflectionMethod $controllerMethod) use ($reflectionClass) {
+        function(\ReflectionMethod $controllerMethod) use ($reflectionClass) {
           $this->setRoutes($reflectionClass, $controllerMethod);
         }
       );
@@ -32,13 +40,13 @@ class RouteCollector implements Interfaces\IRouteCollector {
   }
 
   private function setRoutes(
-    ReflectionClass $reflectionClass,
-    ReflectionMethod $reflectionMethod
+    \ReflectionClass $reflectionClass,
+    \ReflectionMethod $reflectionMethod
   ): void {
     $controller = $reflectionClass
-      ->getAttributes(Controller::class, ReflectionAttribute::IS_INSTANCEOF);
+      ->getAttributes(Controller::class, \ReflectionAttribute::IS_INSTANCEOF);
     $httpRoute = $reflectionMethod
-      ->getAttributes(HttpRoute::class, ReflectionAttribute::IS_INSTANCEOF);
+      ->getAttributes(HttpRoute::class, \ReflectionAttribute::IS_INSTANCEOF);
 
     if (empty($httpRoute) || empty($controller)) return;
     

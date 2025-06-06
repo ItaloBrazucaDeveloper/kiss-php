@@ -1,5 +1,4 @@
 <?php
-
 namespace KissPhp\Core\DED;
 
 use Closure, Exception, ErrorException, Throwable;

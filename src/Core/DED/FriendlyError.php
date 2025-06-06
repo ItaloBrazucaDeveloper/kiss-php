@@ -1,8 +1,5 @@
 <?php
-
 namespace KissPhp\Core\DED;
-
-use Throwable;
 
 class FriendlyError {
   public readonly string $title;
@@ -12,7 +9,7 @@ class FriendlyError {
   public readonly array $where;
   public readonly array $snippet;
 
-  public function __construct(Throwable $exception) {
+  public function __construct(\Throwable $exception) {
     $this->title = self::formatTitle($exception::class);
     $this->code = $exception->getCode();
     $this->message = $exception->getMessage();

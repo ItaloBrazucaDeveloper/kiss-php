@@ -1,13 +1,8 @@
 <?php
-
 namespace KissPhp\Services;
 
-use ReflectionClass;
-use KissPhp\Attributes\Injection\Dependency;
+use KissPhp\Attributes\Di\Inject;
 
-/**
- * @template T
- */
 class Container implements Interfaces\IContainer {
   private array $instances = [];
 
@@ -17,35 +12,37 @@ class Container implements Interfaces\IContainer {
   }
 
   /**
+   * @template T
    * @param class-string<T> $className
    * @return T
    */
   private function resolve(string $className): mixed {
-    $reflector = new ReflectionClass($className);
-    $hasConstructor = $reflector->hasMethod('__construct');
-    
-    $instance = $hasConstructor ?
-      $reflector->newInstance() :
-      $reflector->newInstanceWithoutConstructor();
-
-    $properties = $reflector->getProperties();
-
-    foreach ($properties as $property) {
-      $dependecy = $property->getAttributes(Dependency::class);
-      
-      if (count($dependecy) === 0) continue;
-      $dependecyAttribute = $dependecy[0]->newInstance();
-
-      $dependecyName = $dependecyAttribute->instanceOf ?? $property->getType()->getName();
-      $property->setValue($instance, $this->get($dependecyName));
+    $reflector = new \ReflectionClass($className);
+    if (!($constructor = $reflector->getConstructor())) {
+      return $reflector->newInstanceWithoutConstructor();
     }
-    return $instance;
+
+    $parameters = $constructor->getParameters();
+    if (count($parameters) <= 0) return $reflector->newInstance();
+
+    $args = array_map(function($parameter) {
+      $objectToInject = $parameter->getType()->getName();
+      $injectAttribute = $parameter->getAttributes(Inject::class);
+
+      if (count($injectAttribute) !== 0) {
+        $injectAttributeInstance = $injectAttribute[0]->newInstance();
+        $objectToInject = $injectAttributeInstance->instanceOf;
+      }
+      return $this->get($objectToInject);
+    }, $parameters);
+
+    return $reflector->newInstanceArgs($args);
   }
 
   /**
-   * @template TClass
-   * @param class-string<TClass> $className O nome da classe a ser resolvida.
-   * @return TClass
+   * @template T
+   * @param class-string<T> $className
+   * @return T
    */
   public function get(string $className): mixed {
     if (!isset($this->instances[$className])) {

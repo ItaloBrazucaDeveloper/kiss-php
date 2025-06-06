@@ -1,9 +1,8 @@
 <?php
-
 namespace KissPhp\Core\Routing\Collections;
 
 use KissPhp\Core\Routing\Route;
-use KissPhp\Attributes\Injection\Dependency;
+use KissPhp\Attributes\Di\Inject;
 use KissPhp\Core\Routing\Engine\RouteCompiler;
 
 class RouteCollection implements Interfaces\IRouteCollection {
@@ -13,8 +12,9 @@ class RouteCollection implements Interfaces\IRouteCollection {
   /** @var array<string, array<string, Route>> */
   private array $compiledRoutes = [];
 
-  #[Dependency(RouteCompiler::class)]
-  private RouteCompiler $routeCompiler;
+  public function __construct(
+    #[Inject(RouteCompiler::class)] private RouteCompiler $routeCompiler
+  ) { }
 
   public function add(Route $newRoute): void {
     $endpoint = "{$newRoute->prefix}{$newRoute->path}";

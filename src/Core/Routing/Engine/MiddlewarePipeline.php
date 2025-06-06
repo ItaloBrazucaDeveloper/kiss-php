@@ -1,12 +1,10 @@
 <?php
-
 namespace KissPhp\Core\Routing\Engine;
 
-use Closure;
 use KissPhp\Protocols\Http\Request;
 
 class MiddlewarePipeline implements Interfaces\IMiddlewarePipeline {
-  public function call($middlewares): Closure {
+  public function call($middlewares): \Closure {
     return function (Request $request) use ($middlewares): ?Request {
       if (empty($middlewares)) return $request;
 

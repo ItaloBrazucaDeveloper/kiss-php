@@ -1,8 +1,7 @@
 <?php
-
 namespace KissPhp\Core\Routing\Collectors;
 
-use KissPhp\Attributes\Injection\Dependency;
+use KissPhp\Attributes\Di\Inject;
 
 use KissPhp\Core\Routing\Collections\{
   ControllerCollection,
@@ -10,8 +9,10 @@ use KissPhp\Core\Routing\Collections\{
 };
 
 class ControllerCollector implements Interfaces\IControllerCollector {
-  #[Dependency(ControllerCollection::class)]
-  private IControllerCollection $controllerCollection;
+  public function __construct(
+    #[Inject(ControllerCollection::class)]
+      private IControllerCollection $controllerCollection
+  ) { }
 
   public function collect(string $controllersPath): array {
     foreach (scandir($controllersPath) as $file) {

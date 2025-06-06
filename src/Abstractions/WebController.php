@@ -1,26 +1,15 @@
 <?php
-
 namespace KissPhp\Abstractions;
 
-use KissPhp\Attributes\Injection\Dependency;
-use KissPhp\Services\{ View, FlashMessage };
+use KissPhp\Services\View;
 
 abstract class WebController {
-  #[Dependency(FlashMessage::class)]
-  protected FlashMessage $flashMessage;
-  
   /**
    * Redireciona o usuário para a URL fornecida.
    * 
    * @param string $url URL para a qual o usuário será redirecionado.
-   * @param array{type: string, message: string}|null $flashMessage Array contendo tipo e mensagem de flash
-   *        onde type pode ser 'success', 'error', 'warning' ou 'info'
    */
-  public function redirect(
-    string $url,
-    ?array $flashMessage = null,
-  ): void {
-    if ($flashMessage) $this->flashMessage->set($flashMessage);
+  public function redirect(string $url): void {
     header("Location: {$url}");
     exit;
   }

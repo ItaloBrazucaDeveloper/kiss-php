@@ -1,14 +1,11 @@
 <?php
-
 namespace KissPhp\Exceptions;
 
-use Exception, Throwable;
-
-class NotFound extends Exception implements Throwable {
+class NotFound extends \Exception implements \Throwable {
   public function __construct(
     string $message = "Not Found",
     int $code = 404,
-    ?Throwable $previous = null
+    ?\Throwable $previous = null
   ) {
     parent::__construct($message, $code, $previous);
   }

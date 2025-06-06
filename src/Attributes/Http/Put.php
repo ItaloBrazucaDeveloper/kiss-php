@@ -1,7 +1,19 @@
 <?php
-
 namespace KissPhp\Attributes\Http;
 
+/**
+ * Atributo para definir a `rota` HTTP do método de um controller.
+ * 
+ * Use quando declarar métodos em controllers.
+ * 
+ * Exemplo de uso:
+ * ```php
+ * #[Put('/:commentID:{numeric}')]
+ * public function refreshComment(Request $request) {
+ *    // logic of method
+ * }
+ * ```
+ */
 #[\Attribute(\Attribute::TARGET_METHOD)]
 class Put extends HttpRoute {
   public function __construct(

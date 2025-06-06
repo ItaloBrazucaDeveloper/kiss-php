@@ -1,5 +1,4 @@
 <?php
-
 namespace KissPhp\Protocols\Http;
 
 class QueryStrings {

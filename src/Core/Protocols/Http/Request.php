@@ -1,5 +1,4 @@
 <?php
-
 namespace KissPhp\Protocols\Http;
 
 use KissPhp\Core\Routing\Route;

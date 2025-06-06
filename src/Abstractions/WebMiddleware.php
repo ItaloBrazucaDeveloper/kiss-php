@@ -1,8 +1,6 @@
 <?php
-
 namespace KissPhp\Abstractions;
 
-use Closure;
 use KissPhp\Protocols\Http\Request;
 
 abstract class WebMiddleware {
@@ -13,5 +11,5 @@ abstract class WebMiddleware {
    * @param Closure $next
    * @return void
    */
-  abstract public function handle(Request $request, Closure $next): ?Request;
+  abstract public function handle(Request $request, \Closure $next): ?Request;
 }

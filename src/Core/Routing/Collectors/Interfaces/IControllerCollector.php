@@ -1,5 +1,4 @@
 <?php
-
 namespace KissPhp\Core\Routing\Collectors\Interfaces;
 
 interface IControllerCollector {

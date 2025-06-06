@@ -1,11 +1,10 @@
 <?php
-
 namespace KissPhp\Core\Routing;
 
 use KissPhp\Config\Paths;
 use KissPhp\Exceptions\NotFound;
 use KissPhp\Protocols\Http\Request;
-use KissPhp\Attributes\Injection\Dependency;
+use KissPhp\Attributes\Di\Inject;
 
 use KissPhp\Core\Routing\{
   Collectors\RouteCollector,
@@ -17,14 +16,16 @@ use KissPhp\Core\Routing\{
 };
 
 class DispatchRouter {
-  #[Dependency(ControllerInvoker::class)]
-  private IControllerInvoker $controllerInvoker;
+  public function __construct(
+    #[Inject(ControllerInvoker::class)]
+      private IControllerInvoker $controllerInvoker,
+      
+    #[Inject(MiddlewarePipeline::class)]
+      private IMiddlewarePipeline $middlewareChain,
 
-  #[Dependency(MiddlewarePipeline::class)]
-  private IMiddlewarePipeline $middlewareChain;
-
-  #[Dependency(RouteCollector::class)]
-  private IRouteCollector $routeCollector;
+    #[Inject(RouteCollector::class)]
+      private IRouteCollector $routeCollector,
+  ) { }
 
   public function dispatch(string $method, string $uri): void {
     $route = $this->searchRoute($method, $uri);

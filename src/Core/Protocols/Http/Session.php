@@ -1,10 +1,8 @@
 <?php
-
 namespace KissPhp\Protocols\Http;
 
 class Session {
-  public function set(string $key, mixed $value): void {
-    $_SESSION[$key] = $value;
+  public function set(string $key, mixed $value): void { $_SESSION[$key] = $value;
   }
 
   public function get(string $key): mixed { return $_SESSION[$key] ?? null; }

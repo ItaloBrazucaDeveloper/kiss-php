@@ -1,12 +1,10 @@
 <?php
-
 namespace KissPhp\Core\Routing\Engine;
 
-use KissPhp\Attributes\Data\DTO;
 use KissPhp\Core\Routing\Route;
-use KissPhp\Services\Container;
+use KissPhp\Attributes\Data\DTO;
 use KissPhp\Protocols\Http\Request;
-use KissPhp\Services\DTOParser;
+use KissPhp\Services\{ Container, DTOParser };
 
 class ControllerInvoker implements Interfaces\IControllerInvoker {
   public function invoke(Route $route, Request $request): void {
@@ -35,11 +33,18 @@ class ControllerInvoker implements Interfaces\IControllerInvoker {
 
       if ($parameterType->getName() === Request::class) {
         $arguments[] = $request;
-      } else if ($parameter->getAttributes(DTO::class)[0]) {
+      } else if ($parameter->getAttributes(DTO::class)) {
         $arguments[] = DTOParser::parse(
           $request->body->getAll(),
           $parameterType->getName()
         );
+
+        if (count(DTOParser::getErrors()) > 0) {
+          $request->session->set('InputErrors', DTOParser::getErrors());
+          $referer = $_SERVER['HTTP_REFERER'] ?? '/';
+          header("Location: {$referer}");
+          exit;
+        }
       }
     }
     return $arguments;

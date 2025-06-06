@@ -1,5 +1,4 @@
 <?php
-
 namespace KissPhp\Core\DED;
 
 class ErrorCollection {
