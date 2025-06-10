@@ -1,11 +1,11 @@
 <?php
 namespace KissPhp\Abstractions;
 
-use KissPhp\Services\ViewRenderService;
 use KissPhp\Services\Session;
+use KissPhp\Services\ViewRender;
 
 abstract class WebController {
-  public function __construct(private Session $session) { }
+  public function __construct(protected Session $session) { }
 
   /**
    * Redireciona o usuário para a URL fornecida.
@@ -25,7 +25,7 @@ abstract class WebController {
    * @return string O conteúdo renderizado da view.
    */
   public function render(string $view, array $data = []): void {
-    echo ViewRenderService::getInstance()->render($view, $data);
+    echo ViewRender::getInstance()->render($view, $data);
     exit;
   }
 }

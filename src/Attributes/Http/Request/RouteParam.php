@@ -18,10 +18,7 @@ use KissPhp\Attributes\Data\DataMapping;
  */
 #[\Attribute(\Attribute::TARGET_PARAMETER)]
 class RouteParam extends DataMapping {
-  public function __construct(
-    ?string $stringClass = null,
-    ?string $key = null
-  ) {
-    parent::__construct($stringClass, $key);
+  public function __construct(?string $key = null) {
+    parent::__construct($key);
   }
 }

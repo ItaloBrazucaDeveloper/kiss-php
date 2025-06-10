@@ -4,7 +4,7 @@ namespace KissPhp\Services;
 use KissPhp\Exceptions\NotFound;
 use KissPhp\Config\{ PathsConfig, ViewRenderConfig }; 
 
-class ViewRenderService {
+class ViewRender {
   private \Twig\Environment $twig;
 
   public static function getInstance(): self {
@@ -34,7 +34,7 @@ class ViewRenderService {
   }
 
   public function render(string $viewName, array $params = []): string {
-    if ($this->has($viewName)) throw new NotFound(
+    if (!$this->has($viewName)) throw new NotFound(
       "Cannot found the view: {$viewName}"
     );
     return $this->twig->render($viewName, $params);

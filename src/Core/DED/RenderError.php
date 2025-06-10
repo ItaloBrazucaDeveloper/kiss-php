@@ -1,13 +1,13 @@
 <?php
 namespace KissPhp\Core\DED;
 
-use KissPhp\Services\View;
+use KissPhp\Services\ViewRender;
 
 class RenderError {
   public static bool $isRendering = false;
 
   public static function render(string $errorClass, ?array $data = []): void {
-    $twig = View::getInstance();
+    $twig = ViewRender::getInstance();
     $viewName = self::getViewNameFromClassName($errorClass);
 
     // Mescla os dados passados com os erros acumulados
