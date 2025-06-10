@@ -1,7 +1,7 @@
 <?php
 namespace KissPhp\Attributes\Http\Methods;
 
-use KissPhp\Config\View;
+use KissPhp\Config\RoutingConfig;
 
 #[\Attribute(\Attribute::TARGET_METHOD)]
 abstract class Method {
@@ -17,7 +17,11 @@ abstract class Method {
 
   public function getParams(): array {
     $params = [];
-    $isValidParams = preg_match_all(View::PARAM_PATTERN, $this->path, $matches);
+    $isValidParams = preg_match_all(
+      RoutingConfig::ROUTE_PARAM_PATTERN,
+      $this->path,
+      $matches
+    );
     
     if (!$isValidParams) return [];
     [, $varNames] = $matches;

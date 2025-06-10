@@ -1,18 +1,10 @@
 <?php
 namespace KissPhp\Core\Routing\Collectors;
 
-use KissPhp\Attributes\{
-  Di\Inject,
-  Http\HttpRoute,
-  Http\Controller,
-};
-
-use KissPhp\Core\Routing\Collections\{
-  RouteCollection,
-  interfaces\IRouteCollection
-};
-
 use KissPhp\Core\Routing\Route;
+use KissPhp\Attributes\Http\Methods\Method;
+use KissPhp\Attributes\{ Di\Inject, Http\Controller };
+use KissPhp\Core\Routing\Collections\{ RouteCollection, interfaces\IRouteCollection };
 
 class RouteCollector implements Interfaces\IRouteCollector {
   public function __construct(
@@ -46,7 +38,7 @@ class RouteCollector implements Interfaces\IRouteCollector {
     $controller = $reflectionClass
       ->getAttributes(Controller::class, \ReflectionAttribute::IS_INSTANCEOF);
     $httpRoute = $reflectionMethod
-      ->getAttributes(HttpRoute::class, \ReflectionAttribute::IS_INSTANCEOF);
+      ->getAttributes(Method::class, \ReflectionAttribute::IS_INSTANCEOF);
 
     if (empty($httpRoute) || empty($controller)) return;
     

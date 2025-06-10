@@ -1,28 +1,28 @@
 <?php
-namespace KissPhp\Services\Session;
+namespace KissPhp\Services;
 
 use KissPhp\Traits\FlashMessage;
 
-class SessionService {
+class Session {
   use FlashMessage;
 
-  public function set(string $key, mixed $value): void {
+  public static function set(string $key, mixed $value): void {
     $_SESSION[$key] = $value;
   }
 
-  public function get(string $key): mixed {
+  public static function get(string $key): mixed {
     return $_SESSION[$key] ?? null;
   }
 
-  public function has(string $key): bool {
+  public static function has(string $key): bool {
     return isset($_SESSION[$key]);
   }
 
-  public function remove(string $key): void {
+  public static function remove(string $key): void {
     unset($_SESSION[$key]);
   }
 
-  public function clearAll(): void {
+  public static function clearAll(): void {
     session_unset();
     session_destroy();
   }

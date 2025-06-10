@@ -1,5 +1,5 @@
 <?php
-namespace KissPhp\Services\DataParser;
+namespace KissPhp\Services;
 
 use KissPhp\Attributes\Data\Validate;
 

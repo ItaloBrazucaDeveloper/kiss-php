@@ -1,13 +1,13 @@
 <?php
 namespace KissPhp\Core\Routing\Engine;
 
-use KissPhp\Config\View;
+use KissPhp\Config\RoutingConfig;
 
 class RouteCompiler implements Interfaces\IRouteCompiler {
   public function compile(string $routePath): string {
     // Converte path param para um grupo de captura nomeado. Ex: (/|/(?P<param>[^/]+))
     $routePatternCompiled = preg_replace_callback(
-      View::PARAM_PATTERN,
+      RoutingConfig::ROUTE_PARAM_PATTERN,
       function($matches): string {
         [, $paramName, $validationType, $isOptional] = $matches;
         

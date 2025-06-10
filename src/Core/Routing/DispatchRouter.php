@@ -1,7 +1,7 @@
 <?php
 namespace KissPhp\Core\Routing;
 
-use KissPhp\Config\Paths;
+use KissPhp\Config\PathsConfig;
 use KissPhp\Exceptions\NotFound;
 use KissPhp\Protocols\Http\Request;
 use KissPhp\Attributes\Di\Inject;
@@ -38,7 +38,7 @@ class DispatchRouter {
   }
 
   private function searchRoute(string $method, string $uri): ?Route {
-    $routes = $this->routeCollector->collect(Paths::CONTROLLERS_PATH);
+    $routes = $this->routeCollector->collect(PathsConfig::CONTROLLERS_PATH);
     $route = $routes->get($method, $uri);
 
     if (!$route) {

@@ -1,5 +1,5 @@
 <?php
-namespace KissPhp\Services\Container;
+namespace KissPhp\Services;
 
 use KissPhp\Attributes\Di\Inject;
 
