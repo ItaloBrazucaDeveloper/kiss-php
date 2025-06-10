@@ -4,7 +4,6 @@
    Framework web para php que segue a metodologia **kiss** (**K**eep **I**t **S**tupid **S**imple).
 
    ![PHP](https://img.shields.io/badge/PHP-8.4-8892BF?&logo=php&logoColor=white)
-   ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.0-9a66ad?&logo=bootstrap&logoColor=white)
    ![Version](https://img.shields.io/badge/version-alpha%200.1-red)
    ![Brazil](https://img.shields.io/badge/Made%20In-Brazil-green?&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAYAAAB24g05AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAFGSURBVHjajNE9S0JxFMfx373XB3BJaGkQH5YUGiS6RA0REU0RQUs0CL2ANmmQ5sDVwVpaosU3kL2EXkFNQY9DSPRwk0Dug+Z1uAi36ILD73A45/M7/3PO0YvFojcUChX/+qGq6tNPIBCAEwqF4pmMzs7eC0ajEaDKRDwe/7ZpWRaTk5McHOxzfn7G09MjmUyGeDyOlEqlnmEYtLW1Y9s2n58ffH5+EY1GicViKPl8jmQyQSgU4v39DU3TsG0by7LQNA1VVZFyuRzxeJxoNIplWZimia7rmKaJruuYpomUzWaZnp5ienoK0zQxDAPDMDAMA13XKRQKSNlslqWlRdbXV6lUKliWRaVSwbIsSqUShUIBKZPJsLGxTrVaRdd1TNOkXC5TLpcxDINisYiUTqdZWVmhVqtRq9Wo1+s0Gg0ajQb1ep2XlxcA/h0A4sDrfZYHegIAAAAASUVORK5CYII=)
    ![Status](https://img.shields.io/badge/Status-%20Development-yellow)
@@ -14,7 +13,7 @@
 
 ## **🧠 Motivação**
 
-O Kiss PHP é um framework que surgiu como uma alternativa ao frameworks php tradicionais, que parecem assustadores para quem está começando. O objetivo é tornar o desenvolvimento web mais simples, rápido e amigável. Este framework segue a metodologia **kiss** (**K**eep **I**t **S**tupid **S**imple), que é uma metodologia de desenvolvimento que se concentra na simplicidade, mantendo tudo estupidamente simples, sem a necessidade de uma estrutura complexa.
+Kiss PHP é um framework simples, sendo uma uma alternativa ao frameworks php complexos e tradicionais, que parecem assustadores. O objetivo é tornar o desenvolvimento web mais simples, rápido e amigável. Este framework segue a metodologia **kiss** (**K**eep **I**t **S**tupid **S**imple), que se concentra na simplicidade, mantendo tudo estupidamente simples.
 
 ## ✨ **Funcionalidades**
 

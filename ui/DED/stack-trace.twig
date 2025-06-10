@@ -14,11 +14,15 @@
 				<span class="badge bg-secondary me-2">{{ loop.index }}</span>
 				
 				{% if trace.where.file is defined %}
-					<span class="{{ idOfElementToCopy }} text-monospace me-2">{{ trace.where.file }}:{{ trace.where.line }}</span>
+					<span class="{{ idOfElementToCopy }} text-monospace me-2">
+						{{ trace.where.file }}:{{ trace.where.line }}
+					</span>
 				{% endif %}
 				
 				{% if trace.class is defined %}
-					<span class="{{ idOfElementToCopy }}">{{ trace.class }}{{ trace.type }}{{ trace.function }}</span>
+					<span class="{{ idOfElementToCopy }}">
+						{{ trace.class }}{{ trace.type }}{{ trace.function }}
+					</span>
 				{% else %}
 					<span class="{{ idOfElementToCopy }}">{{ trace.function }}</span>
 				{% endif %}
