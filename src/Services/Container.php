@@ -1,12 +1,12 @@
 <?php
-namespace KissPhp\Services;
+namespace KissPhp\Services\Container;
 
 use KissPhp\Attributes\Di\Inject;
 
-class Container implements Interfaces\IContainer {
+class Container {
   private array $instances = [];
 
-  public static function getInstance(): Interfaces\IContainer {
+  public static function getInstance(): self {
     static $instance;
     return $instance ??= new static();
   }

@@ -2,6 +2,7 @@
 namespace KissPhp\Abstractions;
 
 use KissPhp\Services\View;
+use KissPhp\Services\ViewRenderService;
 
 abstract class WebController {
   /**
@@ -22,7 +23,7 @@ abstract class WebController {
    * @return string O conteúdo renderizado da view.
    */
   public function render(string $view, array $data = []): void {
-    echo View::getInstance()->render($view, $data);
+    echo ViewRenderService::getInstance()->render($view, $data);
     exit;
   }
 }

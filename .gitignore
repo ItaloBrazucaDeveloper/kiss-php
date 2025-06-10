@@ -1,6 +1,1 @@
-.env
-!.example.env
-.vscode
-
 vendor/
-.http

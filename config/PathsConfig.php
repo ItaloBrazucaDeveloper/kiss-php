@@ -2,7 +2,7 @@
 
 namespace KissPhp\Config;
 
-final class Paths {
+final class PathsConfig {
   public const ENV_PATH = '../';
   public const VIEWS_PATH = '../app/Views/';
   public const CONTROLLERS_PATH = '../app/Controllers/';

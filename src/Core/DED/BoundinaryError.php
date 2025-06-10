@@ -1,8 +1,6 @@
 <?php
 namespace KissPhp\Core\DED;
 
-use Closure, Exception, ErrorException, Throwable;
-
 class BoundinaryError {
   public static function register(): void {
     set_exception_handler([self::class, 'handleException']);
@@ -11,7 +9,7 @@ class BoundinaryError {
     ini_set('display_errors', 'Off');
   }
 
-  public static function handleException(Throwable $exception): void {
+  public static function handleException(\Throwable $exception): void {
     ErrorCollection::add(new FriendlyError($exception));
     if (RenderError::$isRendering) return;
 
@@ -26,7 +24,7 @@ class BoundinaryError {
     int $level, string $message, string $file, string $line
   ): void {
     if (error_reporting() & $level) { // Converte erros em exceções
-      throw new ErrorException($message, 0, $level, $file, $line);
+      throw new \ErrorException($message, 0, $level, $file, $line);
     }
   }
 
@@ -35,7 +33,7 @@ class BoundinaryError {
     $isFatalError = in_array($error['type'], [E_ERROR, E_CORE_ERROR, E_COMPILE_ERROR]);
 
     if ($error !== null && $isFatalError) {
-      self::handleException(new ErrorException(
+      self::handleException(new \ErrorException(
         $error['message'],
         0,
         $error['type'],
@@ -45,10 +43,10 @@ class BoundinaryError {
     }
   }
 
-  public static function wrap(Closure $closure): void {
+  public static function wrap(\Closure $closure): void {
     try {
       $closure();
-    } catch (Exception $exception) {
+    } catch (\Exception $exception) {
       self::handleException($exception);
     }
   }

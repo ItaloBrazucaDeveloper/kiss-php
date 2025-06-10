@@ -1,5 +1,5 @@
 <?php
-namespace KissPhp\Attributes\Http;
+namespace KissPhp\Attributes\Http\Methods;
 
 /**
  * Atributo para definir a `rota` HTTP do método de um controller.
@@ -15,7 +15,7 @@ namespace KissPhp\Attributes\Http;
  * ```
  */
 #[\Attribute(\Attribute::TARGET_METHOD)]
-class Get extends HttpRoute {
+class Get extends Method {
   public function __construct(
     ?string $path = '',
     ?array $middlewares = []

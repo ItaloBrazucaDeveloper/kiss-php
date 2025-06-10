@@ -13,6 +13,7 @@ namespace KissPhp\Attributes\Data;
  *    public string $zipcode;
  * }
  * ```
+ * @property string $validator `class-string` da validação a ser aplicada.
  */
 #[\Attribute(\Attribute::TARGET_PROPERTY)]
 class Validate {

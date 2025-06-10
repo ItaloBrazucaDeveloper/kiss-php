@@ -1,10 +1,10 @@
 <?php
-namespace KissPhp\Attributes\Http;
+namespace KissPhp\Attributes\Http\Methods;
 
 use KissPhp\Config\View;
 
 #[\Attribute(\Attribute::TARGET_METHOD)]
-abstract class HttpRoute {
+abstract class Method {
   /**
    * @param string $path Rota que deverá ser chamada para fazer uma chamada ao método.
    * @param WebMiddleware[] $middlewares Middlewares que serão chamados antes de executar o método.

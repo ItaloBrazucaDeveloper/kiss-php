@@ -1,14 +1,12 @@
 <?php
-namespace KissPhp\Services;
+namespace KissPhp\Services\DataParser;
 
 use KissPhp\Attributes\Data\Validate;
 
-class DTOParser implements Interfaces\IDTOParser {
+class DataParser {
   private static array $errors = [];
 
-  public static function getErrors(): array {
-    return self::$errors;
-  }
+  public static function getErrors(): array { return self::$errors; }
 
   public static function parse(array $data, string $class): mixed {
     $reflector = new \ReflectionClass($class);

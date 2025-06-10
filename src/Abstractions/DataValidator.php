@@ -12,12 +12,20 @@ abstract class DataValidator {
    */
   abstract protected function check(): array;
 
+  /**
+   * Inicia a validação.
+   */
   protected function newValidate(): self {
     $this->isValid = true;
     $this->message = '';
     return $this;
   }
 
+  /**
+   * Retorna o resultado da validação.
+   * 
+   * @return array{isValid: bool, message: string}
+   */
   protected function result(): array {
     error_log(
       $this::class.': isValid: '.boolval($this->isValid).' - message: '.$this->message
@@ -28,6 +36,11 @@ abstract class DataValidator {
     ];
   }
 
+  /**
+   * Verifica se uma condição tem valor 'true'.
+   * 
+   * @param bool $condition Condição que será verificada.
+   */
   protected function when(bool $condition): self {
     if ($this->isValid && $condition) {
       $this->isValid = false;
@@ -35,6 +48,11 @@ abstract class DataValidator {
     return $this;
   }
 
+  /**
+   * Verifica se uma condição tem valor 'false'.
+   * 
+   * @param bool $condition Condição que será verificada.
+   */
   protected function whenNot(bool $condition): self {
     if ($this->isValid && !$condition) {
       $this->isValid = false;
@@ -42,6 +60,9 @@ abstract class DataValidator {
     return $this;
   }
 
+  /**
+   * Adiciona a mensagem que deseja notificar caso a validação falhe.
+   */
   protected function notify(string $message): self {
     if ($this->isValid === false && $this->message === '') {
       $this->message = $message;

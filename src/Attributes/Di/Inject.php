@@ -13,12 +13,10 @@ namespace KissPhp\Attributes\Di;
  *    #[Inject(Example::class)] private InterfaceExample $example
  * ) { }
  * ```
+ * @property string $instanceOf `class-string` da classe que deseja injetar.
  */
 #[\Attribute(\Attribute::TARGET_PARAMETER)]
 class Inject {
-  /**
-   * @param string $instanceOf `class-string` da classe que deseja injetar.
-   */
   public function __construct(
     public readonly string $instanceOf
   ) { }

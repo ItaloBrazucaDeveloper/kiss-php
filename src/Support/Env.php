@@ -1,15 +1,15 @@
 <?php
-namespace KissPhp\Services;
+namespace KissPhp\Services\Dotenv;
 
-use Dotenv\Dotenv as DotEnviroment;
+use Dotenv\Dotenv;
 
-class Dotenv implements Interfaces\IDotenv {
+class Env {
   public static function get(string $key): ?string {
     return $_ENV[$key] ?? null;
   }
 
   public static function load(string $path = '/'): void {
-    $dotenv = DotEnviroment::createImmutable($path);
+    $dotenv = Dotenv::createImmutable($path);
     $dotenv->safeLoad();
   }
 }
