@@ -1,5 +1,5 @@
 <?php
-namespace KissPhp\Services;
+namespace KissPhp\Support;
 
 final class SessionCookieParams {
   private static array $sessionCookieParams = [];

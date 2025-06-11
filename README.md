@@ -19,14 +19,14 @@ Kiss PHP é um framework simples, sendo uma uma alternativa ao frameworks php co
 
 ### **Sistema de Rotas**
 
-- **Rotas declarativas**: A annotation `#[Controller]` *define um prefixo para todas* as rotas do controlador.
+- **Rotas declarativas**: A attribute `#[Controller]` *define um prefixo para todas* as rotas do controlador.
 
    ```php
    #[Controller('/products')]
    class ProductController extends WebController { }
    ```
 
-   É possível usar annotations para mapear as rotas de acordo com cada função.
+   É possível usar attributes para mapear as rotas de acordo com cada função.
    São suportados os métodos GET, POST, PUT e DELETE do HTTP.
 
    ```php
@@ -54,7 +54,7 @@ Kiss PHP é um framework simples, sendo uma uma alternativa ao frameworks php co
    | `numeric`	      | [0-9]+	       | números          | `/:id:{numeric}`        |
    | `alpha`         | [a-zA-Z]+     | letras           | `/:name:{alpha}`        |
    | `alphanumeric`  | [a-zA-Z0-9]+  | texto e números  | `/:code:{alphanumeric}` |
-   | `custom`        | ---           | ---              | `/:key:{\d+[any]}`      |
+   | `custom`        | ---           | ---              | `/:key:{/seu_regex/}`      |
 
    Exemplo de uso:
 
@@ -64,14 +64,12 @@ Kiss PHP é um framework simples, sendo uma uma alternativa ao frameworks php co
       
       #[Get('/:id:{numeric}?')] # Rota: '/products' ou '/products/4326'
       public function list(Request $request): void {
-         $param = $request->getParam('id');
+         $userId = $request->getRouteParam('id');
 
-         # Valida se o valor do parâmetro segue o tipo 'numeric'
-         if ($param?->validatePattern()) {
-            echo "Listando produto com o id {$param->value}";
-         } else {
-            echo "Listando todos os produtos";
-         }
+         $mensagem = $userId
+            ? "Listando produto com o id {$userId}";
+            : "Listando todos os produtos";
+         echo $mensagem;
       }
    }
    ```
@@ -88,9 +86,8 @@ class ProductController extends WebController {
    
    #[Post('/save')] # Rota: '/products/save'
    public function save(Request $request): void {
-      $body = $request->getBody();
-      $productName = $body->get('name');
-      $productPrice = $body->get('price');
+      $productName = $request->getBody('name');
+      $productPrice = $request->getBody('price');
 
       if (!$productPrice && !$productName) {
          echo 'Invalid inputs!';
@@ -99,21 +96,23 @@ class ProductController extends WebController {
 }
 ```
 
-**Conversão do objeto Request**: É possível usar annotations para converter partes do objeto Request em objetos diferentes. Exemplos:
+**Conversão do objeto Request**: É possível usar attributes para converter partes do objeto Request em objetos diferentes. Exemplos:
 
-- Converter o objeto Request em um objeto 'User' usando a attribute `DTO`:
+- Converter o Body do Request em um objeto 'User' usando a attribute `Body`:
 
    ```php
    #[Controller('/products')]
    class ProductController extends WebController {
 
       #[Post('/save')] # Rota: '/products/save'
-      public function save(#[DTO] User $user): void {
+      public function save(#[Body] User $user): void {
          $isUserValid = $this->checkCredentials($user);
          // logic of method
       }
    }
    ```
+
+> O Kiss-Php também fornece os attributes `QueryString`, `Header`, `RouteParam` e `Session` para manipular as partes do Request.
 
 ### **Middlewares**
 Você pode querer usar middlewares por rota ou por controller. 
@@ -138,7 +137,7 @@ Exemplo de midlleware:
 class Auth extends WebMiddleware {
    # Função que será chamada antes de invocar um controlador
    public function handle(Request $request, Closure $next): ?Request {
-      $hasToken = $request->getHeader()['token'];
+      $hasToken = $request->getHeaders('token');
       if ($hasToken) return $next($request);
       return null;
    }
@@ -179,6 +178,7 @@ Agora você pode exibir o erro 404 em qualquer controller, por exemplo:
 ```php
 #[Controller('/products')]
 class ProductController extends WebController {
+   #[Get] # Rota: '/products'
    public function list(): void {
       $products = $this->productService->list();
       if (empty($products)) {
@@ -191,7 +191,7 @@ class ProductController extends WebController {
 Quando um erro lançado e não tratado, não tiver um correspondente na pasta 'app/Views/Pages/[errors]', o DED exibe a página de erro padrão: `default.twig`. Em todas as páginas de erro, é mandado o parâmetro `errors` com os erros que foram lançados.
 
 ### **Higiene de dados**
-O KissPhp fornece uma estrutura para validação de dados. Essa estrutura permite validar dados - de DTOs - de forma simples e fácil. Para validar um objeto DTO, basta anotá-lo com a annotation `Validate` e passar o nome do validador que deseja usar.
+O KissPhp fornece uma estrutura para validação de dados. Essa estrutura permite validar dados - de DTOs - de forma simples e fácil. Para validar um objeto DTO, basta anotá-lo com a attribute `Validate` e passar o nome do validador que deseja usar.
 
 Exemplo de Validador:
 

@@ -1,5 +1,5 @@
 <?php
-namespace KissPhp\Services;
+namespace KissPhp\Support;
 
 class SessionInitializer {
   public static function init(): void {

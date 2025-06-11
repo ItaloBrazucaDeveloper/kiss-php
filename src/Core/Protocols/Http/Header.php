@@ -9,6 +9,10 @@ class Header {
     $this->headers = getallheaders() ?? [];
   }
 
+  public function set(string $key, string $value): void {
+    $this->headers[$key] = $value;
+  }
+
   public function get(string $key): ?string {
     return $this->headers[$key] ?? null;
   }

@@ -1,5 +1,5 @@
 <?php
-namespace KissPhp\Services\Dotenv;
+namespace KissPhp\Support;
 
 use Dotenv\Dotenv;
 
@@ -8,7 +8,7 @@ class Env {
     return $_ENV[$key] ?? null;
   }
 
-  public static function load(string $path = '/'): void {
+  public static function load(string $path): void {
     $dotenv = Dotenv::createImmutable($path);
     $dotenv->safeLoad();
   }
