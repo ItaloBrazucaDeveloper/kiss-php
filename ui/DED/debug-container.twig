@@ -1,62 +1,48 @@
-{% block styles %}
-	{% include "@Infra/ded/styles.twig" %}
-{% endblock %}
+{% include "@Infra/DED/styles.twig" %}
 
 {% if _errors is defined %}
 	<button
 			type="button"
 			class="debug-button"
-			data-bs-toggle="modal"
-			data-bs-target="#debug_ded_kiss"
 			aria-label="Open debugger"
 			title="Open debugger"
+			onclick="debug_ded_modal.showModal()"
 		>
 			<span>!</span>
 	</button>
 
-	<div
-		class="modal"
-		id="debug_ded_kiss"
-		tabindex="-1"
-		aria-hidden="true"
-	>
-		<dialog class="debug-modal-dialog">
-			<div class="debug-modal">
-				<div class="debug-modal-header">
-					<button
-						type="button"
-						class="btn-close btn-close-white"
-						data-bs-dismiss="modal"
-						aria-label="Close"
-						title="Close debugger"
-					></button>
-				</div>
-				<div class="debug-modal-body">
-					{% for _error in _errors %}
-						<section class="error-section">
-							<header>
-								<span class="error-title">
-									{{ _error.title }}
-								</span>
-								<span class="error-message">
-									Message:
-									{{ _error.message }}
-								</span>
-							</header>
-							<div>
-								{% include '@Infra/DED/source-code.twig' %}
-								{% include '@Infra/DED/stack-trace.twig' %}
-							</div>
-						</section>
-					{% endfor %}
-				</div>
+
+	<dialog id="debug_ded_modal" class="debug-modal-dialog">
+		<div class="debug-modal">
+			<div class="debug-modal-header">
+				<button
+					type="button"
+					class="btn-close btn-close-white"
+					aria-label="Close"
+					onclick="debug_ded_modal.close()"
+					title="Close debugger"
+				></button>
+			</div>
+
+			<div class="debug-modal-body">
+				{% for _error in _errors %}
+					<section class="error-section">
+						<header>
+							<span class="error-title">
+								{{ _error.title }}
+							</span>
+							<span class="error-message">
+								Message:
+								{{ _error.message }}
+							</span>
+						</header>
+						<div>
+							{% include '@Infra/DED/source-code.twig' %}
+							{% include '@Infra/DED/stack-trace.twig' %}
+						</div>
+					</section>
+				{% endfor %}
 			</div>
 		</div>
-	</div>
-
-	{% block scripts %}
-		<script>
-
-		</script>
-	{% endblock %}
+	</dialog>
 {% endif %}

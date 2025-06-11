@@ -17,7 +17,7 @@ class RenderError {
 
     $view = $twig->has("@error-page/{$viewName}.twig") ? $viewName : 'default';
     while (ob_get_level()) ob_end_clean();
-    echo $twig->render("@error-page/{$view}", $viewData);
+    echo $twig->render("@error-page/{$view}.twig", $viewData);
   }
 
   private static function getViewNameFromClassName(
