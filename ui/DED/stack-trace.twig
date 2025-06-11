@@ -1,6 +1,6 @@
-<div class="card mb-3 bg-black border-1 border-secondary border-opacity-50 overflow-hidden">
-	<header class="card-header border-bottom border-secondary d-flex justify-content-between align-items-center">
-		<h5 class="text-light text-opacity-75 card-title mb-0">
+<div class="stack-trace-card">
+	<header class="card-header">
+		<h5 class="card-title">
 			Stack Trace
 		</h5>
 
@@ -8,13 +8,13 @@
 		{% include "@infra/DED/copy-to-clipboard.twig" with { idOfElementToCopy } %}
 	</header>
 
-	<ol class="list-group list-group-flush">
+	<ol class="stack-trace-list">
 		{% for trace in _error.trace %}
-			<li class="bg-black border-secondary text-light text-opacity-75 list-group-item d-flex align-items-md-center">
-				<span class="badge bg-secondary me-2">{{ loop.index }}</span>
+			<li class="stack-trace-item align-items-md-center">
+				<span class="stack-trace-number">{{ loop.index }}</span>
 				
 				{% if trace.where.file is defined %}
-					<span class="{{ idOfElementToCopy }} text-monospace me-2">
+					<span class="stack-trace-file {{ idOfElementToCopy }}">
 						{{ trace.where.file }}:{{ trace.where.line }}
 					</span>
 				{% endif %}

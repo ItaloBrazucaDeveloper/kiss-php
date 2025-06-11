@@ -1,0 +1,191 @@
+<style>
+  .debug-container {
+    position: relative;
+  }
+
+  .debug-button {
+    font-weight: 500;
+    font-size: 1.25rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.5rem;
+    position: absolute;
+    bottom: 0;
+    margin: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    background-color: #dc3545;
+    border: none;
+    color: white;
+  }
+
+  .debug-modal {
+    background-color: #212529;
+    color: #f8f9fa;
+    border: none;
+    padding: 0.5rem;
+    border-top: 4px solid #dc3545;
+  }
+
+  .debug-modal-dialog {
+    max-width: 1200px;
+    margin: 1.75rem auto;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .debug-modal-header {
+    border: none;
+    padding-bottom: 0;
+  }
+
+  .debug-modal-body {
+    padding: 1rem;
+  }
+
+  .error-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .error-title {
+    font-weight: 500;
+    background-color: rgba(220, 53, 69, 0.25);
+    color: #dc3545;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.25rem;
+    display: inline-block;
+  }
+
+  .error-message {
+    display: block;
+    background-color: rgba(220, 53, 69, 0.1);
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    border-left: 3px solid #dc3545;
+  }
+
+  .code-card, .stack-trace-card {
+    background-color: #000;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(108, 117, 125, 0.5);
+    overflow: hidden;
+  }
+
+  .card-header {
+    border-bottom: 1px solid #6c757d;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .card-title {
+    margin-bottom: 0;
+    color: rgba(248, 249, 250, 0.75);
+  }
+
+  .card-body {
+    background-color: #000;
+    padding: 0;
+  }
+
+  .code-snippet {
+    font-family: monospace;
+    line-height: 0.5;
+    padding: 0;
+    margin: 0;
+    color: #f8f9fa;
+    font-weight: 300;
+    overflow: hidden;
+  }
+
+  .code-line {
+    display: flex;
+    padding: 0.25rem 1.25rem;
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .code-line--error {
+    background-color: rgba(220, 53, 69, 0.25);
+    color: white;
+  }
+
+  .code-line--normal {
+    color: rgba(248, 249, 250, 0.5);
+  }
+
+  .line-number {
+    margin: 0 0.75rem 0 0;
+  }
+
+  .line-separator {
+    margin: 0 0.5rem;
+  }
+
+  .line-content {
+    flex: 1;
+  }
+
+  .stack-trace-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .stack-trace-item {
+    background-color: #000;
+    border: 1px solid rgba(108, 117, 125, 0.5);
+    color: rgba(248, 249, 250, 0.75);
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .stack-trace-number {
+    background-color: #6c757d;
+    margin-right: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+  }
+
+  .stack-trace-file {
+    font-family: monospace;
+    margin-right: 0.5rem;
+  }
+
+  .copy-button {
+    background: none;
+    border: none;
+    padding: 0.5rem 0.25rem 0.25rem;
+    margin-left: 0.5rem;
+  }
+
+  .copy-button svg {
+    width: 16px;
+    height: 16px;
+    fill: #bbb;
+  }
+
+  /* Utilitários */
+  .text-monospace {
+    font-family: monospace;
+  }
+
+  .text-nowrap {
+    white-space: nowrap;
+  }
+
+  .d-none {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .d-md-block {
+      display: block;
+    }
+    
+    .align-items-md-center {
+      align-items: center;
+    }
+  }
+</style>

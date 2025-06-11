@@ -1,18 +1,9 @@
-<pre
-	class="text-light font-lighter p-0 m-0 font-monospace overflow-hidden"
-	style="line-height: 0.5;"
->
+<pre class="code-snippet">
 	{% for line in _error.snippet %}
-		<div
-			class='d-flex px-5 p-1 fs-6 m-0 {{ 
-				line.isError 
-				? "bg-danger bg-opacity-25 text-white"
-				: "text-light text-opacity-50" 
-			}}'
-		>
-			<span class='m-0 me-3'>{{ line.number }}</span>
-			<span class="m-0 mx-2">|</span>
-			<span class='{{ idOfElementToCopy }} flex-fill'>{{ line.text }}</span>
+		<div class="code-line {{ line.isError ? 'code-line--error' : 'code-line--normal' }}">
+			<span class="line-number">{{ line.number }}</span>
+			<span class="line-separator">|</span>
+			<span class="line-content {{ idOfElementToCopy }}">{{ line.text }}</span>
 		</div>
 	{% endfor %}
 </pre>

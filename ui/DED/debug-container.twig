@@ -1,13 +1,17 @@
+{% block styles %}
+	{% include "@Infra/ded/styles.twig" %}
+{% endblock %}
+
 {% if _errors is defined %}
 	<button
 			type="button"
-			class="fw-medium fs-5 btn btn-danger py-1 px-3 rounded-2 position-absolute bottom-0 m-3 shadow-md"
+			class="debug-button"
 			data-bs-toggle="modal"
 			data-bs-target="#debug_ded_kiss"
 			aria-label="Open debugger"
 			title="Open debugger"
 		>
-			<span class="text-white">!</span>
+			<span>!</span>
 	</button>
 
 	<div
@@ -16,25 +20,25 @@
 		tabindex="-1"
 		aria-hidden="true"
 	>
-		<div class="modal-dialog modal-xl modal-dialog-centered border-0 rounded-4 shadow-md">
-			<div class="modal-content bg-dark text-light border-0 p-2 border-4 border-top border-danger">
-				<div class="modal-header border-0 pb-0">
+		<dialog class="debug-modal-dialog">
+			<div class="debug-modal">
+				<div class="debug-modal-header">
 					<button
 						type="button"
-						class="btn-close btn-close-white border-0"
+						class="btn-close btn-close-white"
 						data-bs-dismiss="modal"
 						aria-label="Close"
 						title="Close debugger"
 					></button>
 				</div>
-				<div class="modal-body">
+				<div class="debug-modal-body">
 					{% for _error in _errors %}
-						<section>
-							<header class="mb-4">
-								<span class='fw-medium bg-danger bg-opacity-25 text-danger p-2 rounded-3 mb-5'>
+						<section class="error-section">
+							<header>
+								<span class="error-title">
 									{{ _error.title }}
 								</span>
-								<span class='d-block bg-danger bg-opacity-10 px-3 py-2 mt-4 border-start border-danger border-3'>
+								<span class="error-message">
 									Message:
 									{{ _error.message }}
 								</span>
@@ -51,6 +55,8 @@
 	</div>
 
 	{% block scripts %}
-		<script src='/assets/js/copyToClipboard.js'></script>
+		<script>
+
+		</script>
 	{% endblock %}
 {% endif %}
