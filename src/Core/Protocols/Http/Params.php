@@ -13,6 +13,10 @@ class Params {
     return $this->params[$key] ?? null;
   }
 
+  public function getAll(): array {
+    return $this->params;
+  }
+
   public function has(string $key): bool {
     return isset($this->params[$key]);
   }

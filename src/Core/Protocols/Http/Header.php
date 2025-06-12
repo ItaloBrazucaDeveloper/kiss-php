@@ -17,6 +17,10 @@ class Header {
     return $this->headers[$key] ?? null;
   }
 
+  public function getAll(): array {
+    return $this->headers;
+  }
+
   public function has(string $key): bool {
     return isset($this->headers[$key]);
   }

@@ -33,9 +33,11 @@ class ControllerInvoker implements Interfaces\IControllerInvoker {
 
       if ($parameterType->getName() === Request::class) {
         $arguments[] = $request;
-      } else if ($parameter->getAttributes(DataMapping::class, \ReflectionAttribute::IS_INSTANCEOF)) {
+      } else if ($dataMapping = $parameter->getAttributes(DataMapping::class, \ReflectionAttribute::IS_INSTANCEOF)) {
+        $requestAction = "getAll{$dataMapping[0]->getName()}";
+        
         $arguments[] = DataParser::parse(
-          $request->body->getAll(),
+          $request->$requestAction(),
           $parameterType->getName()
         );
 

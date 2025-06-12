@@ -30,39 +30,39 @@ class Request {
     return $this->url->method;
   }
 
-  public function getRouteParam(?string $key = null): ?string {
+  public function getRouteParam(string $key): ?string {
     return $this->url->params->get($key);
   }
 
-  public function getAllRouteParams(): Params {
-    return $this->url->params;
+  public function getAllRouteParams(): array {
+    return $this->url->params->getAll();
   }
 
   public function getQueryString(?string $key = null): ?string {
     return $this->url->queryStrings->get($key);
   }
 
-  public function getAllQueryStrings(): QueryStrings {
-    return $this->url->queryStrings;
+  public function getAllQueryStrings(): array {
+    return $this->url->queryStrings->getAll();
   }
 
   public function setheader(string $key, string $value): void {
     $this->header->set($key, $value);
   }
 
-  public function getHeader(?string $key = null): ?string {
+  public function getHeader(string $key): ?string {
     return $this->header->get($key);
   }
 
-  public function getAllHeaders(): Header {
-    return $this->header;
+  public function getAllHeaders(): array {
+    return $this->header->getAll();
   }
 
-  public function getAllBody(?string $key = null): string {
+  public function getBody(string $key): string {
     return $this->body->get($key);
   }
 
-  public function getBody(): Body {
-    return $this->body;
+  public function getAllBody(): array {
+    return $this->body->getAll();
   }
 }

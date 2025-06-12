@@ -13,6 +13,10 @@ class QueryStrings {
     return $this->queryStrings[$key] ?? null;
   }
 
+  public function getAll(): array {
+    return $this->queryStrings;
+  }
+
   public function has(string $key): bool {
     return isset($this->queryStrings[$key]);
   }
