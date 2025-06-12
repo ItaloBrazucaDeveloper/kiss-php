@@ -31,7 +31,9 @@ class ViewRender {
         return $errors;
       }
     ));
-    $this->twig->addGlobal('DEV_MODE', strtolower(Env::get('DEV_MODE')) === 'true');
+
+    $isDevMode = Env::get('DEV_MODE') ?? 'false';
+    $this->twig->addGlobal('DEV_MODE', strtolower($isDevMode) === 'true');
   }
 
   public function render(string $viewName, array $params = []): string {
