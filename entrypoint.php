@@ -7,9 +7,9 @@ use KissPhp\Support\{ Env, SessionInitializer };
 
 BoundinaryError::wrap(function() {
   BoundinaryError::register();
-  Env::load(__DIR__ . '/../../');
+  Env::load(dirname(__DIR__, 3));
 
-  include __DIR__ . '/../../app/settings.php';
+  include dirname(__DIR__, 3) . '/app/settings.php';
   SessionInitializer::init();
 
   $uri = $_SERVER['REQUEST_URI'] ?? '';

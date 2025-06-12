@@ -1,0 +1,14 @@
+<script>
+  function copyToClipboard(idOfElementToCopy) {
+    let copyTexts = document.querySelectorAll(`.${idOfElementToCopy}`);
+    let text = '';
+
+    copyTexts.forEach(element => {
+      if (!element) return;
+      text += '\n' + element.textContent;
+    });
+    
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(text);
+  }
+</script>
