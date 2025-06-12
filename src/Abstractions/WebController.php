@@ -1,12 +1,9 @@
 <?php
 namespace KissPhp\Abstractions;
 
-use KissPhp\Services\Session;
 use KissPhp\Services\ViewRender;
 
 abstract class WebController {
-  protected Session $session = new Session();
-
   /**
    * Redireciona o usuário para a URL fornecida.
    * 
