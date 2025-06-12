@@ -215,7 +215,7 @@ class Email extends DataValidator {
 }
 ```
 
-Como usar em uma classe DTO:
+Como usar em uma classe, neste caso uma DTO:
 
 ```php
 class RegisterUser {
