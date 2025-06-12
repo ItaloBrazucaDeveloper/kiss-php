@@ -28,6 +28,11 @@ trait FlashMessage {
    * }
    */
   public function getFlashMessage(): ?array {
-    return $_SESSION[$this->key] ?? null;
+    if (!isset($_SESSION[$this->key])) {
+      return null;
+    }
+    $flash = $_SESSION[$this->key];
+    unset($_SESSION[$this->key]);
+    return $flash;
   }
 }

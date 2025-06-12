@@ -7,10 +7,7 @@
       "KissPhp\\": "src/",
       "KissPhp\\Config\\": "config/",
       "KissPhp\\Protocols\\": "src/Core/Protocols/"
-    },
-    "files": [
-      "src/Support/SessionInitializer.php"
-    ]
+    }
   },
   "authors": [
     { "name": "ItaloBrazucaDeveloper" }

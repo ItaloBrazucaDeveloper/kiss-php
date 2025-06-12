@@ -2,17 +2,10 @@
 namespace KissPhp\Abstractions;
 
 use KissPhp\Services\ViewRender;
+use KissPhp\Traits\Redirect;
 
 abstract class WebController {
-  /**
-   * Redireciona o usuário para a URL fornecida.
-   * 
-   * @param string $url URL para a qual o usuário será redirecionado.
-   */
-  public function redirect(string $url): void {
-    header("Location: {$url}");
-    exit;
-  }
+  use Redirect;
 
   /**
    * Renderiza uma view com os parâmetros fornecidos.

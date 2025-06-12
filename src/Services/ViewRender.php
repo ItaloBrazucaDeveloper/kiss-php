@@ -1,8 +1,9 @@
 <?php
 namespace KissPhp\Services;
 
+use KissPhp\Support\Env;
 use KissPhp\Exceptions\NotFound;
-use KissPhp\Config\{ PathsConfig, ViewRenderConfig }; 
+use KissPhp\Config\{ PathsConfig, ViewRenderConfig };
 
 class ViewRender {
   private \Twig\Environment $twig;
@@ -30,6 +31,7 @@ class ViewRender {
         return $errors;
       }
     ));
+    $this->twig->addGlobal('DEV_MODE', strtolower(Env::get('DEV_MODE')) === 'true');
   }
 
   public function render(string $viewName, array $params = []): string {

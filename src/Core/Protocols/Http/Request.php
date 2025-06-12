@@ -1,10 +1,13 @@
 <?php
 namespace KissPhp\Protocols\Http;
 
+use KissPhp\Traits\Redirect;
 use KissPhp\Services\Session;
 use KissPhp\Core\Routing\Route;
 
 class Request {
+  use Redirect;
+
   private Url $url;
   private Header $header;
   private Body $body;
