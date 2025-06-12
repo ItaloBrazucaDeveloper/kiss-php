@@ -17,7 +17,7 @@
 			<div class="debug-modal-header">
 				<button
 					type="button"
-					class="btn-close btn-close-white"
+					class="close-debug-button"
 					aria-label="Close"
 					onclick="debug_ded_modal.close()"
 					title="Close debugger"
@@ -27,7 +27,7 @@
 			<div class="debug-modal-body">
 				{% for _error in _errors %}
 					<section class="error-section">
-						<header>
+						<header class="error-section-header">
 							<span class="error-title">
 								{{ _error.title }}
 							</span>
