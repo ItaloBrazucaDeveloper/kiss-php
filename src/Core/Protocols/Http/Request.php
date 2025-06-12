@@ -19,6 +19,7 @@ class Request {
     );
     $this->header = new Header();
     $this->body = new Body();
+    $this->session = new Session();
   }
 
   public function getUrl(): string {
