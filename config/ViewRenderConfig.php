@@ -10,7 +10,7 @@ final class ViewRenderConfig {
   ];
 
   public const ALIAS_PATHS = [
-    PathsConfig::VIEWS_PATH . 'Pages/[errors]/' => 'error-page',
+    'Pages/[errors]/' => 'error-page',
     PathsConfig::INFRA_VIEWS_PATH => 'Infra',
   ];
 }

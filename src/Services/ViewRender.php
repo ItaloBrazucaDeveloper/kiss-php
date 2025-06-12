@@ -13,14 +13,13 @@ class ViewRender {
   }
 
   private function __construct() {
-    $loader = new \Twig\Loader\FilesystemLoader();
-    $loader->addPath(PathsConfig::VIEWS_PATH);
+    $loader = new \Twig\Loader\FilesystemLoader(rootPath: PathsConfig::VIEWS_PATH);
+    $loader->addPath('');
     $loader->addPath(PathsConfig::INFRA_VIEWS_PATH, 'infra');
     
     foreach (ViewRenderConfig::ALIAS_PATHS as $path => $alias) {
       $loader->addPath($path, $alias);
     }
-    
     $this->twig = new \Twig\Environment($loader, ViewRenderConfig::ENVORIMENT);
 
     $this->twig->addFunction(new \Twig\TwigFunction(
