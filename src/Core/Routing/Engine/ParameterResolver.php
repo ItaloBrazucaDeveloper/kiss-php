@@ -29,7 +29,7 @@ class ParameterResolver implements Interfaces\IParameterResolver {
       $dataMapping = $parameter->getAttributes(DataRequestMapping::class, \ReflectionAttribute::IS_INSTANCEOF);
 
       if ($dataMapping) {
-        $arguments[] = $this->resolveDataMappedParameter($parameter, $parameterType, $dataMapping[0], $request);
+        $arguments[] = $this->resolveDataMappedParameter($parameterType, $dataMapping[0], $request);
         if (count(DataParser::getErrors()) > 0) {
           Session::set('InputErrors', DataParser::getErrors());
           $this->redirectToBack();
