@@ -22,16 +22,18 @@ class DataParser {
       $type = $property->getType();
       $isAObject = !$type->isBuiltin() && class_exists($type->getName());
 
-      ($type && $isAObject)
-        ? $value = self::parse((array) $data, $type->getName())
-        : $value = self::checkValue($property, $data);
-
-      if ($value === null) continue;
-      if (!($type->getName() === gettype($value))) {
-        try {
-          $value = TypeCaster::castValue($value, $type->getName());
-        } catch (\Exception $e) {
-          throw new DataParserException("Failed to cast value for property '{$property->getName()}' in class '{$class}'", 0, $e);
+      if ($type && $isAObject) {
+        $propertyData = isset($data[$property->getName()]) ? (array) $data[$property->getName()] : [];
+        $value = self::parse($propertyData, $type->getName());
+      } else {
+        $value = self::checkValue($property, $data);
+        
+        if ($value !== null && $type->getName() !== gettype($value)) {
+          try {
+            $value = TypeCaster::castValue($value, $type->getName());
+          } catch (\Exception $e) {
+            throw new DataParserException("Failed to cast value for property '{$property->getName()}' in class '{$class}'", 0, $e);
+          }
         }
       }
       $property->setValue($instance, $value);
