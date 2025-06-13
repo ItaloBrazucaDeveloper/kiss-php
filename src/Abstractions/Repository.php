@@ -3,10 +3,12 @@ namespace KissPhp\Abstractions;
 
 use KissPhp\Support\Env;
 
-use Doctrine\ORM\ORMSetup;
 use \Doctrine\DBAL\Connection;
-use Doctrine\ORM\EntityManager;
 use Doctrine\DBAL\DriverManager;
+
+use Doctrine\ORM\ORMSetup;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 abstract class Repository {
   private static function getConnection(): Connection {
@@ -21,12 +23,15 @@ abstract class Repository {
       'password' => Env::get('DB_PASSWORD'),
       'host' => Env::get('DB_HOST'),
       'port' => (int) Env::get('DB_PORT'),
-      'driver' => 'pdo_mysql',
+      'driver' => 'mysqli',
       'charset' => 'utf8mb4',
     ]);
   }
 
-  protected function database(): EntityManager {
+  /**
+   * Fornece acesso ao `EntityManager` do Doctrine para manipulação do banco de dados.
+   */
+  protected function database(): EntityManagerInterface {
     static $instance;
     return $instance ??= self::createEntityManager();
   }
@@ -38,9 +43,5 @@ abstract class Repository {
         paths: ['../app/Models'],
         isDevMode: true,
     ));
-  }
-
-  public function __destruct() {
-    $this->database()->close();
   }
 }
