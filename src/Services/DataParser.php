@@ -5,7 +5,7 @@ use KissPhp\Attributes\Data\Validate;
 
 class DataParser {
   private static array $errors = [];
-
+  
   public static function getErrors(): array { return self::$errors; }
 
   public static function parse(array $data, string $class): mixed {
@@ -20,6 +20,7 @@ class DataParser {
         ? $value = self::parse((array) $data, $type->getName())
         : $value = self::checkValue($property, $data);
 
+      if ($value === null) continue;
       $property->setValue($instance, $value);
     }
     return $instance;
@@ -30,9 +31,9 @@ class DataParser {
     mixed $data
   ): mixed {
     $validate = $property->getAttributes(Validate::class);
-    if (count($validate) === 0) return $data;
-
     $name = $property->getName();
+
+    if (count($validate) === 0) return $data[$name] ?? null;
     $allowNull = $property->getType()->allowsNull();
 
     $validateAttribute = $validate[0]->newInstance();
