@@ -1,20 +1,21 @@
 <?php
 namespace KissPhp\Core\Routing\Engine;
 
-class MethodInvoker {
+class MethodInvoker implements Interfaces\IMethodInvoker {
   public function invoke(
-    \ReflectionMethod $reflectionMethod,
     object $controller,
+    \ReflectionMethod $reflectionMethod,
     array $arguments
   ): void {
     try {
-      print_r($reflectionMethod->invokeArgs($controller, $arguments));
+      echo $reflectionMethod->invokeArgs($controller, $arguments);
     } catch (\Throwable $e) {
-      throw new \KissPhp\Exceptions\ControllerInvokeException(
-        "Erro ao invocar o método '{$reflectionMethod->getName()}' do controller '" . get_class($controller) . "'.",
-        500,
-        $e
-      );
+      $className = get_class($controller);
+      $errorMessage = "
+        Erro ao invocar o método '{$reflectionMethod->getName()}' do controller {$className}. {$e->getMessage()}
+      ";
+
+      throw new \KissPhp\Exceptions\ControllerInvokeException($errorMessage, 500, $e);
     }
   }
 }

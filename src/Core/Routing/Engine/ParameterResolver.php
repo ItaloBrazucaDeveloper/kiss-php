@@ -5,7 +5,7 @@ use KissPhp\Protocols\Http\Request;
 use KissPhp\Attributes\Http\Request\DataRequestMapping;
 use KissPhp\Services\{ DataParser, Session };
 
-class ParameterResolver {
+class ParameterResolver implements Interfaces\IParameterResolver {
   use \KissPhp\Traits\Redirect;
 
   public function resolveParameters(
