@@ -2,6 +2,7 @@
 namespace KissPhp\Services;
 
 use KissPhp\Attributes\Di\Inject;
+use KissPhp\Exceptions\ContainerException;
 
 class Container {
   private array $instances = [];
@@ -17,13 +18,27 @@ class Container {
    * @return T
    */
   private function resolve(string $className): mixed {
-    $reflector = new \ReflectionClass($className);
+    try {
+      $reflector = new \ReflectionClass($className);
+    } catch (\ReflectionException $e) {
+      throw new ContainerException("Failed to reflect class: {$className}", 0, $e);
+    }
     if (!($constructor = $reflector->getConstructor())) {
-      return $reflector->newInstanceWithoutConstructor();
+      try {
+        return $reflector->newInstanceWithoutConstructor();
+      } catch (\Exception $e) {
+        throw new ContainerException("Failed to instantiate class without constructor: {$className}", 0, $e);
+      }
     }
 
     $parameters = $constructor->getParameters();
-    if (count($parameters) <= 0) return $reflector->newInstance();
+    if (count($parameters) <= 0) {
+      try {
+        return $reflector->newInstance();
+      } catch (\Exception $e) {
+        throw new ContainerException("Failed to instantiate class: {$className}", 0, $e);
+      }
+    }
 
     $args = array_map(function($parameter) {
       $objectToInject = $parameter->getType()->getName();
@@ -36,7 +51,11 @@ class Container {
       return $this->get($objectToInject);
     }, $parameters);
 
-    return $reflector->newInstanceArgs($args);
+    try {
+      return $reflector->newInstanceArgs($args);
+    } catch (\Exception $e) {
+      throw new ContainerException("Failed to instantiate class with dependencies: {$className}", 0, $e);
+    }
   }
 
   /**

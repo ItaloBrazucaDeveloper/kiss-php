@@ -1,6 +1,4 @@
-
 <?php
-
 namespace KissPhp\Support;
 
 class TypeCaster {

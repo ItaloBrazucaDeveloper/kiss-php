@@ -3,6 +3,7 @@ namespace KissPhp\Services;
 
 use KissPhp\Attributes\Data\Validate;
 use KissPhp\Support\TypeCaster;
+use KissPhp\Exceptions\DataParserException;
 
 class DataParser {
   private static array $errors = [];
@@ -10,8 +11,12 @@ class DataParser {
   public static function getErrors(): array { return self::$errors; }
 
   public static function parse(array $data, string $class): mixed {
-    $reflector = new \ReflectionClass($class);
-    $instance = $reflector->newInstance();
+    try {
+      $reflector = new \ReflectionClass($class);
+      $instance = $reflector->newInstance();
+    } catch (\ReflectionException $e) {
+      throw new DataParserException("Failed to reflect or instantiate class: {$class}", 0, $e);
+    }
      
     foreach ($reflector->getProperties() as $property) {
       $type = $property->getType();
@@ -23,7 +28,11 @@ class DataParser {
 
       if ($value === null) continue;
       if (!($type->getName() === gettype($value))) {
-        $value = TypeCaster::castValue($value, $type->getName());
+        try {
+          $value = TypeCaster::castValue($value, $type->getName());
+        } catch (\Exception $e) {
+          throw new DataParserException("Failed to cast value for property '{$property->getName()}' in class '{$class}'", 0, $e);
+        }
       }
       $property->setValue($instance, $value);
     }

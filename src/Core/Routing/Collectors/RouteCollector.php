@@ -17,14 +17,20 @@ class RouteCollector implements Interfaces\IRouteCollector {
 
   public function collect(string $path): IRouteCollection {
     $controllers = $this->ControllerCollector->collect($path);
-
     foreach ($controllers as $controller) {
-      $reflectionClass = new \ReflectionClass($controller);
+      try {
+        $reflectionClass = new \ReflectionClass($controller);
+      } catch (\ReflectionException $e) {
+        throw new \KissPhp\Exceptions\RouteCollectorException("Não foi possível refletir o controller '{$controller}'.", 500, $e);
+      }
       $controllerMethods = $reflectionClass->getMethods();
-
       array_walk($controllerMethods,
         function(\ReflectionMethod $controllerMethod) use ($reflectionClass) {
-          $this->setRoutes($reflectionClass, $controllerMethod);
+          try {
+            $this->setRoutes($reflectionClass, $controllerMethod);
+          } catch (\Throwable $e) {
+            throw new \KissPhp\Exceptions\RouteCollectorException("Erro ao adicionar rota para o método '{$controllerMethod->getName()}' do controller '{$reflectionClass->getName()}'.", 500, $e);
+          }
         }
       );
     }

@@ -32,8 +32,9 @@ class DispatchRouter {
     $request = new Request($route);
 
     $cleanRequest = $this->callMidllewares($route->middlewares, $request);
-    if (!$cleanRequest) return;
-    
+    if (!$cleanRequest) {
+      throw new \KissPhp\Exceptions\MiddlewareException("A requisição foi interrompida pelo middleware: {$Middleware}.");
+    }
     $this->controllerInvoker->invoke($route, $request);
   }
 
