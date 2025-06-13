@@ -1,14 +1,14 @@
 <?php
 namespace KissPhp\Abstractions;
 
-use KissPhp\Support\Env;
-
 use \Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DriverManager;
 
 use Doctrine\ORM\ORMSetup;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+
+use KissPhp\Support\DatabaseParams;
 
 abstract class Repository {
   private static function getConnection(): Connection {
@@ -17,15 +17,7 @@ abstract class Repository {
   }
 
   private static function createConnection(): Connection {
-    return DriverManager::getConnection([
-      'dbname' => Env::get('DB_NAME'),
-      'user' => Env::get('DB_USER'),
-      'password' => Env::get('DB_PASSWORD'),
-      'host' => Env::get('DB_HOST'),
-      'port' => (int) Env::get('DB_PORT'),
-      'driver' => 'mysqli',
-      'charset' => 'utf8mb4',
-    ]);
+    return DriverManager::getConnection(DatabaseParams::getConectionParams());
   }
 
   /**
@@ -39,9 +31,6 @@ abstract class Repository {
   private static function createEntityManager(): EntityManager {
    return new EntityManager(
       self::getConnection(),
-      ORMSetup::createAttributeMetadataConfiguration(
-        paths: ['../app/Models'],
-        isDevMode: true,
-    ));
+      ORMSetup::createAttributeMetadataConfiguration(...DatabaseParams::getMatada()));
   }
 }
