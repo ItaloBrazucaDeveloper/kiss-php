@@ -23,7 +23,7 @@ class DataParser {
       $isAObject = !$type->isBuiltin() && class_exists($type->getName());
 
       if ($type && $isAObject) {
-        $propertyData = isset($data[$property->getName()]) ? (array) $data[$property->getName()] : [];
+        $propertyData = isset($data[$property->getName()]) ? (array) $data[$property->getName()] : $data;
         $value = self::parse($propertyData, $type->getName());
       } else {
         $value = self::checkValue($property, $data);

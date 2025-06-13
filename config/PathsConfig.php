@@ -1,5 +1,4 @@
 <?php
-
 namespace KissPhp\Config;
 
 final class PathsConfig {
