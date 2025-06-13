@@ -22,7 +22,9 @@ class QueryStrings {
   }
 
   private function extractQueryStrings(): array {
-    $queryString = $_SERVER['QUERY_STRING'];
+    $queryString = $_SERVER['QUERY_STRING'] ?? '';
+    if (empty($queryString)) return [];
+    
     parse_str($queryString, $params);
     return $params;
   }

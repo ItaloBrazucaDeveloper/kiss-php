@@ -37,7 +37,13 @@ class ControllerInvoker implements Interfaces\IControllerInvoker {
         $dataMapping = $parameter->getAttributes(DataRequestMapping::class, \ReflectionAttribute::IS_INSTANCEOF)
       ) {
         $requestAction = $dataMapping[0]->newInstance()->getRequestAction();
-        
+        if ($parameterType->isBuiltin()) {
+          $parameterName = basename(str_replace('\\', '/', $parameterType->getName()));
+          $argument = $request->$requestAction()[$parameterName] ?? null;
+
+          if ($argument !== null) $arguments[] = $argument;
+          continue;
+        }
         $arguments[] = DataParser::parse(
           $request->$requestAction(),
           $parameterType->getName()
