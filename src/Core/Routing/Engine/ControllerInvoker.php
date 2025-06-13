@@ -3,7 +3,7 @@ namespace KissPhp\Core\Routing\Engine;
 
 use KissPhp\Core\Routing\Route;
 use KissPhp\Protocols\Http\Request;
-use KissPhp\Attributes\Data\DataMapping;
+use KissPhp\Attributes\Http\Request\DataRequestMapping;
 use KissPhp\Services\{ Container, DataParser, Session };
 
 class ControllerInvoker implements Interfaces\IControllerInvoker {
@@ -33,9 +33,10 @@ class ControllerInvoker implements Interfaces\IControllerInvoker {
 
       if ($parameterType->getName() === Request::class) {
         $arguments[] = $request;
-      } else if ($dataMapping = $parameter->getAttributes(DataMapping::class, \ReflectionAttribute::IS_INSTANCEOF)) {
-        $dataMappingNoNamespace = basename(str_replace('\\', '/', $dataMapping[0]->name));
-        $requestAction = "getAll{$dataMappingNoNamespace}";
+      } else if (
+        $dataMapping = $parameter->getAttributes(DataRequestMapping::class, \ReflectionAttribute::IS_INSTANCEOF)
+      ) {
+        $requestAction = $dataMapping[0]->newInstance()->getRequestAction();
         
         $arguments[] = DataParser::parse(
           $request->$requestAction(),

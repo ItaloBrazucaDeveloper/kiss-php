@@ -2,6 +2,7 @@
 namespace KissPhp\Services;
 
 use KissPhp\Attributes\Data\Validate;
+use KissPhp\Support\TypeCaster;
 
 class DataParser {
   private static array $errors = [];
@@ -21,6 +22,9 @@ class DataParser {
         : $value = self::checkValue($property, $data);
 
       if ($value === null) continue;
+      if (!($type->getName() === gettype($value))) {
+        $value = TypeCaster::castValue($value, $type->getName());
+      }
       $property->setValue($instance, $value);
     }
     return $instance;

@@ -22,10 +22,8 @@ class QueryStrings {
   }
 
   private function extractQueryStrings(): array {
-    $queryString = explode('?', $_SERVER['REQUEST_URI']);
-    if (count($queryString) > 1) {
-      return explode('&', $queryString[1]);
-    }
-    return [];
+    $queryString = $_SERVER['QUERY_STRING'];
+    parse_str($queryString, $params);
+    return $params;
   }
 }

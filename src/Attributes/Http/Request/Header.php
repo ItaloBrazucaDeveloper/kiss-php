@@ -1,8 +1,6 @@
 <?php
 namespace KissPhp\Attributes\Http\Request;
 
-use KissPhp\Attributes\Data\DataMapping;
-
 /**
  * Atributo para mapear um header da requisição HTTP para um parâmetro do método do controller.
  *
@@ -16,7 +14,11 @@ use KissPhp\Attributes\Data\DataMapping;
  * ```
  */
 #[\Attribute(\Attribute::TARGET_PARAMETER)]
-class Header extends DataMapping {
+class Header extends DataRequestMapping {
+    public function getRequestAction(): string {
+    return 'getAllHeaders';
+  }
+
   public function __construct(?string $key = null) {
     parent::__construct($key);
   }

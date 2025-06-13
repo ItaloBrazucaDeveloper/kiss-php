@@ -1,8 +1,6 @@
 <?php
 namespace KissPhp\Attributes\Http\Request;
 
-use KissPhp\Attributes\Data\DataMapping;
-
 /**
  * Atributo para mapear um valor da sessão da requisição HTTP para um parâmetro do método do controller.
  *
@@ -15,8 +13,13 @@ use KissPhp\Attributes\Data\DataMapping;
  * }
  * ```
  */
+#[\Deprecated]
 #[\Attribute(\Attribute::TARGET_PARAMETER)]
-class Session extends DataMapping {
+class Session extends DataRequestMapping {
+  public function getRequestAction(): string {
+    return 'getSession';
+  }
+
   public function __construct(?string $key = null) {
     parent::__construct($key);
   }
