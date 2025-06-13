@@ -1,6 +1,8 @@
 <?php
 namespace KissPhp\Support;
 
+use Psr\Cache\CacheItemPoolInterface;
+
 final class DatabaseParams {
   private static array $conectionParams = [];
   
@@ -43,7 +45,7 @@ final class DatabaseParams {
   /**
    * Define os matadados para o EntityManager.
    * 
-   * @return array{
+   * @param array{
    *  paths: string[],
    *  isDevMode: bool,
    *  proxyDir: ?string,
