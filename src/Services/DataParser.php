@@ -15,7 +15,7 @@ class DataParser {
       $reflector = new \ReflectionClass($class);
       $instance = $reflector->newInstance();
     } catch (\ReflectionException $e) {
-      throw new DataParserException("Failed to reflect or instantiate class: {$class}", 0, $e);
+      throw new DataParserException(message: "Failed to reflect or instantiate class: {$class}", previous: $e);
     }
      
     foreach ($reflector->getProperties() as $property) {

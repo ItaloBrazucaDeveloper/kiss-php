@@ -17,5 +17,9 @@
     "twig/twig": "^3.21.1",
     "doctrine/dbal": "^4.2",
     "doctrine/orm": "^3.3"
+  },
+  "require-dev": {
+    "doctrine/migrations": "^3.6",
+    "symfony/cache": "^6.3"
   }
 }
