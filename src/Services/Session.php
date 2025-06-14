@@ -6,23 +6,23 @@ use KissPhp\Traits\FlashMessage;
 class Session {
   use FlashMessage;
 
-  public static function set(string $key, mixed $value): void {
+  public function set(string $key, mixed $value): void {
     $_SESSION[$key] = $value;
   }
 
-  public static function get(string $key): mixed {
+  public function get(string $key): mixed {
     return $_SESSION[$key] ?? null;
   }
 
-  public static function has(string $key): bool {
+  public function has(string $key): bool {
     return isset($_SESSION[$key]);
   }
 
-  public static function remove(string $key): void {
+  public function remove(string $key): void {
     unset($_SESSION[$key]);
   }
 
-  public static function clearAll(): void {
+  public function clearAll(): void {
     session_unset();
     session_destroy();
   }
