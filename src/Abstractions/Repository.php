@@ -1,7 +1,9 @@
 <?php
 namespace KissPhp\Abstractions;
 
+use Doctrine\ORM\ORMSetup;
 use Doctrine\ORM\EntityManager;
+
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -12,13 +14,21 @@ abstract class Repository {
    * Fornece acesso ao `EntityManager` do Doctrine para manipulação do banco de dados.
    */
   protected function database(): EntityManagerInterface {
-    $connection = DriverManager::getConnection(
-      DatabaseParams::getConectionParams(),
-      ...DatabaseParams::getMatadata()
-    );
+    static $connection;
+    static $entityManager;
 
-    return new EntityManager(
-      $connection,
-      ...DatabaseParams::getMatadata());
+    if ($connection === null) {
+      $connection = DriverManager::getConnection(
+        DatabaseParams::getConectionParams()
+      );
+    }
+
+    if ($entityManager === null) {
+      $config = ORMSetup::createAttributeMetadataConfiguration(
+        ...DatabaseParams::getMetadata(),
+      );
+      $entityManager = new EntityManager($connection, $config);
+    }
+    return $entityManager;
   }
 }

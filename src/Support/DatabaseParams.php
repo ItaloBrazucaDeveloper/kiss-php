@@ -66,7 +66,7 @@ final class DatabaseParams {
    *  cache: ?CacheItemPoolInterface
    * }
    */
-  public static function getMatadata(): array {
+  public static function getMetadata(): array {
     return self::$metadata;
   }
 }
