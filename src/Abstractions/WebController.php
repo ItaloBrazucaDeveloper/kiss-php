@@ -16,6 +16,6 @@ abstract class WebController {
    */
   public function render(string $view, array $data = []): void {
     echo ViewRender::getInstance()->render($view, $data);
-    exit;
+    exit();
   }
 }

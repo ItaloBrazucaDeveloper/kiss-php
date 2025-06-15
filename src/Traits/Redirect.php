@@ -12,26 +12,29 @@ trait Redirect {
     if ($url === '') {
       throw new \InvalidArgumentException("[redirect function] URL cannot be empty");
     }
-
     $url = filter_var($url, FILTER_SANITIZE_URL);
+
     if (!$url) {
       throw new \InvalidArgumentException("[redirect function] Invalid URL: {$url}");
     }
-    header("Location: {$url}");
-    exit;
+    $this->setHeaderLocation($url);
   }
 
   /**
    * Redireciona o usuário para devolta de onde ele veio.
    */
   public function redirectToBack(): void {
-    if (!isset($_SERVER['HTTP_REFERER'])) {
-      throw new \InvalidArgumentException("[redirect function] Cannot redirect to back without HTTP_REFERER");
-    }
-    $url = $_SERVER['HTTP_REFERER'] ?? '/';
+    $currentUrl = $_SERVER['REQUEST_URI'];
+    $referrer = $_SERVER['HTTP_REFERER'] ?? null;
 
-    unset($_SERVER['HTTP_REFERER']);
+    $isValidReferrer = $referrer && $referrer !== '' && $currentUrl !== $referrer;
+    $previousUrl = $isValidReferrer? $referrer : '/';
+
+    $this->setHeaderLocation($previousUrl);
+  }
+
+  private function setHeaderLocation(string $url): void {
     header("Location: {$url}");
-    exit;
+    exit();
   }
 }
