@@ -3,7 +3,6 @@
   "type": "library",
   "license": "MIT",
   "autoload": {
-    "psr-0": { "": "src/" },
     "psr-4": {
       "KissPhp\\": "src/",
       "KissPhp\\Config\\": "config/",
