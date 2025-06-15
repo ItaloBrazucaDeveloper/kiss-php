@@ -28,7 +28,7 @@ final class DatabaseParams {
    * } $params
    */
   public static function setConnectionParams(array $params): void {
-    self::$conectionParams = [...self::$conectionParams, $params];
+    self::$conectionParams = array_merge(self::$conectionParams, $params);
   }
   
   /**
@@ -66,7 +66,7 @@ final class DatabaseParams {
    * }
    */
   public static function setMetadata(array $metadata): void {
-    self::$metadata = [...self::$metadata, $metadata];
+    self::$metadata = array_merge($metadata, self::$metadata);
   }
 
   /**
