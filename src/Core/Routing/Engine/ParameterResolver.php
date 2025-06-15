@@ -31,7 +31,7 @@ class ParameterResolver implements Interfaces\IParameterResolver {
       if ($dataMapping) {
         $arguments[] = $this->resolveDataMappedParameter($parameterType, $dataMapping[0], $request);
         if (count(DataParser::getErrors()) > 0) {
-          Session::set('InputErrors', DataParser::getErrors());
+          $_SESSION['InputErrors'] = DataParser::getErrors();
           $this->redirectToBack();
         }
       }

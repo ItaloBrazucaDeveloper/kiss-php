@@ -8,7 +8,8 @@ class MethodInvoker implements Interfaces\IMethodInvoker {
     array $arguments
   ): void {
     try {
-      echo $reflectionMethod->invokeArgs($controller, $arguments);
+      $positionalArguments = array_values($arguments);
+      echo $reflectionMethod->invokeArgs($controller, $positionalArguments);
     } catch (\Throwable $e) {
       $className = get_class($controller);
       $errorMessage = "
