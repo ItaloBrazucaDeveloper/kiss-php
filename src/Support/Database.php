@@ -15,11 +15,13 @@ class Database {
     static $entityManager;
 
     if ($config === null) {
+      $metadata = DatabaseParams::getMetadata();
       $config = ORMSetup::createAttributeMetadataConfiguration(
-        ...DatabaseParams::getMetadata(),
+        $metadata['paths'],
+        $metadata['isDevMode']
       );
 
-      $strategyOfAutoGenerateProxyClasses = DatabaseParams::getMetadata()['isDevMode']
+      $strategyOfAutoGenerateProxyClasses = $metadata['isDevMode']
         ? ProxyFactory::AUTOGENERATE_ALWAYS
         : ProxyFactory::AUTOGENERATE_FILE_NOT_EXISTS;
 
@@ -28,13 +30,13 @@ class Database {
 
     if ($connection === null) {
       $connection = DriverManager::getConnection(
-        params: DatabaseParams::getConectionParams(),
-        config: $config
+        DatabaseParams::getConectionParams(),
+        $config
       );
     }
 
     if ($entityManager === null) {
-      $entityManager = new EntityManager(conn: $connection, config: $config);
+      $entityManager = new EntityManager($connection, $config);
     }
     return $entityManager;
   }
