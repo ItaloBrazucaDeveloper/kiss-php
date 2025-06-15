@@ -4,7 +4,15 @@ namespace KissPhp\Support;
 use Psr\Cache\CacheItemPoolInterface;
 
 final class DatabaseParams {
-  private static array $conectionParams = [];
+  private static array $conectionParams = [
+    'dbname' => '',
+    'user' => '',
+    'password' => '',
+    'host' => '',
+    'port' => 5432,
+    'driver' => 'pdo_pgsql',
+    'charset' => 'utf8',
+  ];
   
   /**
    * Define os parâmetros do cookie de sessão.
@@ -20,7 +28,7 @@ final class DatabaseParams {
    * } $params
    */
   public static function setConnectionParams(array $params): void {
-    self::$conectionParams = $params;
+    self::$conectionParams = [...self::$conectionParams, $params];
   }
   
   /**
@@ -40,7 +48,12 @@ final class DatabaseParams {
     return self::$conectionParams;
   }
 
-  private static array $metadata = [];
+  private static array $metadata = [
+    'paths' => [],
+    'isDevMode' => false,
+    'proxyDir' => null,
+    'cache' => null,
+  ];
 
   /**
    * Define os matadados para o EntityManager.
@@ -48,12 +61,12 @@ final class DatabaseParams {
    * @param array{
    *  paths: string[],
    *  isDevMode: bool,
-   *  proxyDir: ?string,
-   *  cache: ?CacheItemPoolInterface
+   *  proxyDir: null|string,
+   *  cache: null|CacheItemPoolInterface
    * }
    */
   public static function setMetadata(array $metadata): void {
-    self::$metadata = $metadata;
+    self::$metadata = [...self::$metadata, $metadata];
   }
 
   /**
@@ -62,8 +75,8 @@ final class DatabaseParams {
    * @return array{
    *  paths: string[],
    *  isDevMode: bool,
-   *  proxyDir: ?string,
-   *  cache: ?CacheItemPoolInterface
+   *  proxyDir: null|string,
+   *  cache: null|CacheItemPoolInterface
    * }
    */
   public static function getMetadata(): array {
