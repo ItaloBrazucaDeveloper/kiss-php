@@ -5,21 +5,25 @@ final class ViewParams {
   private static ?array $functions = null;
   private static ?array $globals = null;
 
-  private static function init(): void
-  {
+  private static function init(): void {
     if (self::$functions === null) {
       self::$functions = [
         'getInputError' => function ($inputName) {
           $errors = $_SESSION['InputErrors'][$inputName] ?? '';
           unset($_SESSION['InputErrors'][$inputName]);
           return $errors;
+        },
+        'session' => function ($key = null) {
+          if ($key === null) {
+            return $_SESSION ?? [];
+          }
+          return $_SESSION[$key] ?? null;
         }
       ];
     }
 
     if (self::$globals === null) {
       self::$globals = [
-        'session' => $_SESSION ?? [],
         'DEV_MODE' => Env::get('DEV_MODE') === 'true',
       ];
     }
