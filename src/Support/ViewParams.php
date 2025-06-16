@@ -19,7 +19,7 @@ final class ViewParams {
 
     if (self::$globals === null) {
       self::$globals = [
-        'session' => $_SESSION,
+        'session' => $_SESSION ?? [],
         'DEV_MODE' => Env::get('DEV_MODE') === 'true',
       ];
     }
