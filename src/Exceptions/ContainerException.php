@@ -2,5 +2,12 @@
 namespace KissPhp\Exceptions;
 
 class ContainerException extends \Exception implements \Throwable {
-  // Custom exception for dependency injection container errors
+  public function __construct(
+    string $message = 'Container injection failed!',
+    $code = 500,
+    ?\Throwable $previous = null
+  ) {
+    $message .= PHP_EOL . $previous->getMessage();
+    parent::__construct($message, $code, $previous);
+  }
 }

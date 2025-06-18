@@ -21,7 +21,9 @@ class RouteCollector implements Interfaces\IRouteCollector {
       try {
         $reflectionClass = new \ReflectionClass($controller);
       } catch (\ReflectionException $e) {
-        throw new \KissPhp\Exceptions\RouteCollectorException("Não foi possível refletir o controller '{$controller}'.", 500, $e);
+        throw new \KissPhp\Exceptions\RouteCollectorException(
+          "Não foi possível refletir o controller '{$controller}'.", 500, $e
+        );
       }
       $controllerMethods = $reflectionClass->getMethods();
       array_walk($controllerMethods,
@@ -29,7 +31,9 @@ class RouteCollector implements Interfaces\IRouteCollector {
           try {
             $this->setRoutes($reflectionClass, $controllerMethod);
           } catch (\Throwable $e) {
-            throw new \KissPhp\Exceptions\RouteCollectorException("Erro ao adicionar rota para o método '{$controllerMethod->getName()}' do controller '{$reflectionClass->getName()}'.", 500, $e);
+            throw new \KissPhp\Exceptions\RouteCollectorException(
+              "Erro ao adicionar rota para o método '{$controllerMethod->getName()}' do controller '{$reflectionClass->getName()}'.", 500, $e
+            );
           }
         }
       );

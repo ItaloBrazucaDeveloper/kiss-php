@@ -32,7 +32,9 @@ class ControllerCollector implements Interfaces\IControllerCollector {
   private function getClassNameFromFile(string $filePath): ?string {
     $content = @file_get_contents($filePath);
     if ($content === false) {
-      throw new \KissPhp\Exceptions\ControllerCollectorException("Não foi possível ler o arquivo do controller: {$filePath}");
+      throw new \KissPhp\Exceptions\ControllerCollectorException(
+        "Não foi possível ler o arquivo do controller: {$filePath}"
+      );
     }
     
     $hasNamespace = preg_match(
@@ -46,7 +48,9 @@ class ControllerCollector implements Interfaces\IControllerCollector {
       $webControllerMatch
     );
     if (!$hasNamespace || !$isWebController) {
-      throw new \KissPhp\Exceptions\ControllerCollectorException("Arquivo de controller inválido ou sem namespace/classe esperada: {$filePath}");
+      throw new \KissPhp\Exceptions\ControllerCollectorException(
+        "Arquivo de controller inválido ou sem namespace/classe esperada: {$filePath}"
+      );
     }
     return "{$namespaceMatch[1]}\\{$webControllerMatch[1]}";
   }
