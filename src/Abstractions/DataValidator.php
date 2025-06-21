@@ -12,9 +12,6 @@ abstract class DataValidator {
    */
   abstract protected function check(): array;
 
-  /**
-   * Inicia a validação.
-   */
   protected function newValidate(): self {
     $this->isValid = true;
     $this->message = '';

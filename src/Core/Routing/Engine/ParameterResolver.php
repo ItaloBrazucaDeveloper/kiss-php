@@ -29,7 +29,7 @@ class ParameterResolver implements Interfaces\IParameterResolver {
       $dataMapping = $parameter->getAttributes(DataRequestMapping::class, \ReflectionAttribute::IS_INSTANCEOF);
 
       if ($dataMapping) {
-        $arguments[] = $this->resolveDataMappedParameter($parameterType, $dataMapping[0], $request);
+        $arguments[] = $this->resolveDataMappedParameter($parameter, $parameterType, $dataMapping[0], $request);
         if (count(DataParser::getErrors()) > 0) {
           $_SESSION['InputErrors'] = DataParser::getErrors();
           $this->redirectToBack();
@@ -39,12 +39,12 @@ class ParameterResolver implements Interfaces\IParameterResolver {
     return $arguments;
   }
 
-  private function resolveDataMappedParameter($parameterType, $dataMappingAttr, $request): mixed {
+  private function resolveDataMappedParameter(\ReflectionParameter $parameter, $parameterType, $dataMappingAttr, $request): mixed {
     $requestAction = $dataMappingAttr->newInstance()->getRequestAction();
 
     if ($parameterType->isBuiltin()) {
-      $parameterName = basename(str_replace('\\', '/', $parameterType->getName()));
-      $argument = $request->$requestAction()[$parameterName] ?? null;
+      $key = $dataMappingAttr->newInstance()->key ?? $parameter->getName();
+      $argument = $request->$requestAction()[$key] ?? null;
       return $argument;
     }
 
