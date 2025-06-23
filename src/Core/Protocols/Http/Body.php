@@ -2,8 +2,8 @@
 namespace KissPhp\Protocols\Http;
 
 class Body {
-  private array $body;
   private string $rawBody;
+  private array $body = [];
   public private(set) string $contentType;
 
   public function __construct() {
