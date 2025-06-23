@@ -11,8 +11,7 @@ class Request {
   private Url $url;
   private Header $header;
   private Body $body;
-  
-  public readonly Session $session;
+  public Session $session;
 
   public function __construct(Route $route) {
     $this->url = new Url(

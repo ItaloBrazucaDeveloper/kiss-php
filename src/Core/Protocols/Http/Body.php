@@ -2,20 +2,23 @@
 namespace KissPhp\Protocols\Http;
 
 class Body {
-  public private(set) ?string $contentType;
   private array $body;
+  private string $rawBody;
+  public private(set) string $contentType;
 
   public function __construct() {
-    $this->contentType = $_SERVER['CONTENT_TYPE'] ?? null;
-    $this->body = $this->parseBody(file_get_contents('php://input'));
+    $this->contentType = $_SERVER['CONTENT_TYPE'] ?? '';
+    $this->rawBody = file_get_contents('php://input');
+    $this->body = $this->parseBody($this->rawBody);
   }
 
   private function parseBody($body): array {
     switch ($this->contentType) {
       case 'application/x-www-form-urlencoded':
-      case 'multipart/form-data':
         parse_str($body, $parsed);
         return $parsed;
+      case 'multipart/form-data':
+        return $_POST;
       case 'application/json':
         return json_decode($body, true) ?? [];
       default:
