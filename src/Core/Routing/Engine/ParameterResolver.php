@@ -1,9 +1,9 @@
 <?php
 namespace KissPhp\Core\Routing\Engine;
 
+use KissPhp\Services\DataParser;
 use KissPhp\Protocols\Http\Request;
 use KissPhp\Attributes\Http\Request\DataRequestMapping;
-use KissPhp\Services\{ DataParser, Session };
 
 class ParameterResolver implements Interfaces\IParameterResolver {
   use \KissPhp\Traits\Redirect;
@@ -26,6 +26,7 @@ class ParameterResolver implements Interfaces\IParameterResolver {
         $arguments[] = $request;
         continue;
       }
+      
       $dataMapping = $parameter->getAttributes(DataRequestMapping::class, \ReflectionAttribute::IS_INSTANCEOF);
 
       if ($dataMapping) {
@@ -33,6 +34,18 @@ class ParameterResolver implements Interfaces\IParameterResolver {
         if (count(DataParser::getErrors()) > 0) {
           $_SESSION['InputErrors'] = DataParser::getErrors();
           $this->redirectToBack();
+        }
+      } else {
+        // Handle parameters without data mapping
+        if ($parameter->isDefaultValueAvailable()) {
+          $arguments[] = $parameter->getDefaultValue();
+        } elseif ($parameterType->allowsNull()) {
+          $arguments[] = null;
+        } else {
+          throw new \KissPhp\Exceptions\ControllerInvokeException(
+            "O parâmetro '{$parameter->getName()}' do método '{$reflectionMethod->getName()}' não possui mapeamento de dados e não tem valor padrão.",
+            500
+          );
         }
       }
     }

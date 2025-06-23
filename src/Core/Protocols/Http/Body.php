@@ -9,21 +9,27 @@ class Body {
   public function __construct() {
     $this->contentType = $_SERVER['CONTENT_TYPE'] ?? '';
     $this->rawBody = file_get_contents('php://input');
-    $this->body = $this->parseBody($this->rawBody);
+    $this->parseBody();
   }
 
-  private function parseBody($body): array {
-    switch ($this->contentType) {
-      case 'application/x-www-form-urlencoded':
-        parse_str($body, $parsed);
-        return $parsed;
-      case 'multipart/form-data':
-        return $_POST;
-      case 'application/json':
-        return json_decode($body, true) ?? [];
-      default:
-        return [];
-    };
+  private function parseBody(): void {
+    // Se é multipart/form-data, usa $_POST e $_FILES
+    if (strpos($this->contentType, 'multipart/form-data') !== false) {
+      $this->body = $_POST;
+    }
+    // Se é application/x-www-form-urlencoded
+    elseif (strpos($this->contentType, 'application/x-www-form-urlencoded') !== false) {
+      parse_str($this->rawBody, $this->body);
+    }
+    // Se é application/json
+    elseif (strpos($this->contentType, 'application/json') !== false) {
+      $decoded = json_decode($this->rawBody, true);
+      $this->body = $decoded ?? [];
+    }
+    // Para outros tipos, deixa como raw
+    else {
+      $this->body = ['raw' => $this->rawBody];
+    }
   }
 
   public function get(string $key): ?string {
