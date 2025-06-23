@@ -12,9 +12,7 @@ class RouteCompiler implements Interfaces\IRouteCompiler {
         [, $paramName, $validationType, $isOptional] = $matches;
         
         $validationTypePattern = $this->getTypePatternOfRoute($validationType);
-        return "
-          (\/|\/(?P<{$paramName}>{$validationTypePattern}))"
-          . ($isOptional ? '?' : '');
+        return "(\/|\/(?P<{$paramName}>{$validationTypePattern}))".($isOptional ? '?' : '');
       }, $routePath);
 
     return "#^{$routePatternCompiled}$#";
