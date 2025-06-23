@@ -14,13 +14,16 @@ namespace KissPhp\Attributes\Data;
  * ```
  */
 #[\Attribute(\Attribute::TARGET_PARAMETER)]
-class File {
+class File extends DataMapping {
   /**
    * @param ?string $key A chave do arquivo no corpo da requisição.
    * @param ?array $allowedTypes Tipos MIME permitidos para o arquivo
    */
-  public function __construct(
-    public ?string $key = null,
-    public ?array $allowedTypes = null
-  ) { }
+  public function __construct(?string $key = null) {
+    parent::__construct($key);
+  }
+
+  public function getRequestAction(): string {
+    return 'getAllFiles';
+  }
 }
