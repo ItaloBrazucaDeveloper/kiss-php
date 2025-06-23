@@ -4,6 +4,7 @@ namespace KissPhp\Protocols\Http;
 use KissPhp\Traits\Redirect;
 use KissPhp\Services\Session;
 use KissPhp\Core\Routing\Route;
+use KissPhp\Core\Types\UploadedFile;
 
 class Request {
   use Redirect;
@@ -62,6 +63,21 @@ class Request {
 
   public function getBody(string $key): string {
     return $this->body->get($key);
+  }
+
+  public function getFile(string $key): ?UploadedFile {
+    if (!$this->body->has($key)) {
+      return null;
+    }
+
+    $fileData = $this->body->get($key);
+    return new UploadedFile(
+      $fileData['tmp_name'],
+      $fileData['name'],
+      $fileData['type'],
+      $fileData['size'],
+      $fileData['error']
+    );
   }
 
   public function getAllBody(): array {

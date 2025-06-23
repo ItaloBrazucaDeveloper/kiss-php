@@ -7,7 +7,9 @@ class DataParserException extends \Exception implements \Throwable {
     $code = 500,
     ?\Throwable $previous = null
   ) {
-    $message .= PHP_EOL . $previous->getMessage();
+    if ($previous !== null) {
+      $message .= PHP_EOL . $previous->getMessage();
+    }
     parent::__construct($message, $code, $previous);
   }
 }
