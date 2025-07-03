@@ -5,17 +5,10 @@
   "autoload": {
     "psr-4": {
       "KissPhp\\": "src/",
-      "KissPhp\\Config\\": "config/",
-      "KissPhp\\Protocols\\": "src/Core/Protocols/"
+      "KissPhp\\Config\\": "config/"
     }
   },
   "authors": [
     { "name": "ItaloBrazucaDeveloper" }
-  ],
-  "require": {
-    "doctrine/orm": "^3",
-    "doctrine/dbal": "^4",
-    "symfony/cache": "^7",
-    "twig/twig": "^3.21.1"
-  }
+  ]
 }

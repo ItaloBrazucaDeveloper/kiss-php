@@ -1,9 +1,0 @@
-<pre class="code-snippet">
-	{% for line in _error.snippet %}
-		<div class="code-line {{ line.isError ? 'code-line--error' : 'code-line--normal' }}">
-			<span class="line-number">{{ line.number }}</span>
-			<span class="line-separator">|</span>
-			<span class="line-content {{ idOfElementToCopy }}">{{ line.text }}</span>
-		</div>
-	{% endfor %}
-</pre>
